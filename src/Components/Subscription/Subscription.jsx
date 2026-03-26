@@ -1,0 +1,52 @@
+import cn from 'classnames'
+import s from './Subscription.module.scss'
+import { Container } from '../Layout/Container/Container'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchSubscription } from '../../features/subscriptionSlice'
+
+export const Subscription = () => {
+    const dispatch = useDispatch()
+    const { subscriptionPlans } = useSelector(state => state.subscriptionPlans)
+    useEffect(() => {
+        dispatch(fetchSubscription())
+    }, [dispatch])
+
+    return (
+        <Container className={s['subscription']}>
+            <h2 className={s['subscription-title']}>Подписка на образцы</h2>
+            <div className={s['subscription-description']}>Каждый месяц получайте набор пробников, чтобы найти свой <br /> идеальный
+                аромат без риска покупки полного флакона
+            </div>
+            <div className={s['subscription-tarifs']}>
+                {subscriptionPlans?.map((plan, index) => (
+                    <div
+                        key={plan.plan_id}
+                        className={cn(s['subscription-tarif'],
+                            {
+                                [s['subscription-tarif_base']]: index === 0,
+                                [s['subscription-tarif_luxe']]: index === 1,
+                                [s['subscription-tarif_premium']]: index === 2,
+                            }
+                        )}
+                    >
+                        <div className={s['subscription-tarif_name']}>{plan.name}</div>
+
+                        <div className={s['subscription-tarif_info']}>
+                            <div className={s['subscription-tarif_description']}>{plan.description}</div>
+                            <div className={s['subscription-tarif_count']}>{plan.recommended_samples} рекомендованных + {plan.custom_samples} на ваш выбор</div>
+                            <div className={s['subscription-tarif_volume']}>По {parseFloat(plan.sample_volume_ml)} мл каждый</div>
+                        </div>
+                        <div className={s['subscription-tarif_fare']}>
+                            <div className={s['subscription-tarif_price']}>
+                                {parseFloat(plan.price_per_month)} ₽
+                                <span>/ в месяц</span>
+                            </div>
+                            <button className={s['subscription-tarif_start']}>Начать</button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </Container>
+    )
+}

@@ -1,0 +1,114 @@
+.subscription {
+    margin-top: 114px;
+    margin-bottom: 66px;
+
+    &-title {
+        font-weight: 500;
+        font-size: 66px;
+        line-height: 120%;
+        text-align: center;
+    }
+
+    &-description {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 170%;
+        text-align: center;
+    }
+
+    &-tarifs {
+        display: flex;
+        justify-content: center;
+        margin-top: 52px;
+        gap: 40px;
+    }
+
+    &-tarif {
+
+        &_base,
+        &_premium,
+        &_luxe {
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 17px;
+            padding: 44px 36px;
+            box-shadow: 0 0 57px 0 rgba(0, 0, 0, 0.05);
+            width: 606px;
+            height: 764px;
+
+        }
+
+        &_base {
+            background-image: url('./background_base.jpg');
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+
+        &_premium {
+            background-image: url('./background_premium.jpg');
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+
+        &_luxe {
+            background-image: url('./background_luxe.jpg');
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+
+        &_name {
+            font-weight: 600;
+            font-size: 43px;
+            line-height: 120%;
+            margin-bottom: 44px;
+        }
+
+        &_info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 60px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 120%;
+            opacity: 0.7;
+        }
+
+        &_description {}
+
+        &_count {}
+
+        &_volume {}
+
+        &_fare {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &_price {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 120%;
+
+            span {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 120%;
+                opacity: 0.5;
+            }
+        }
+
+        &_start {
+            font-weight: 600;
+            font-size: 22px;
+            color: $second;
+            border-radius: 34px;
+            padding: 12.5px 30px;
+            background-color: #000;
+        }
+
+    }
+}

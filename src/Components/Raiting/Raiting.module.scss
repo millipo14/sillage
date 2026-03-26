@@ -1,0 +1,23 @@
+.perfume {
+
+    &-raiting {
+        display: flex;
+        flex-direction: row;
+
+        &_value {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 113%;
+        }
+
+        &_stars {
+            display: flex;
+            flex-direction: row;
+            gap: 2px;
+            padding-right: 7px;
+            padding-left: 7px;
+        }
+
+        &_star {}
+    }
+}

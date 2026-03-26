@@ -1,0 +1,190 @@
+.catalog {
+
+    &-container {
+        margin-top: 28px;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 56px;
+    }
+
+    &-filters {
+        display: flex;
+        align-items: center;
+        gap: 93px;
+    }
+
+    &-products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 40px;
+        column-gap: 40px;
+    }
+
+    &-img {
+        width: 445px;
+        height: 430px;
+        object-fit: contain;
+    }
+}
+
+.filter {
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 130%;
+        letter-spacing: 0.02em;
+    }
+
+    &-icon {}
+}
+
+.sort {
+    &-select {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 130%;
+        letter-spacing: 0.02em;
+        color: $text;
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        outline: none;
+
+        padding-right: 20%;
+        padding-left: 8px;
+
+        background-image: url('./img/arrow-select.png');
+        background-repeat: no-repeat;
+        background-position: right center;
+
+
+        option {
+            background-color: #FFF0F5;
+            opacity: 0.2;
+            color: $text;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 130%;
+            letter-spacing: 0.02em;
+            border: none;
+            outline: none;
+        }
+
+    }
+}
+
+
+
+.count {
+
+    &-products {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 130%;
+        letter-spacing: 0.03em;
+    }
+}
+
+.product {
+
+    width: 445px;
+    border: 1px solid rgba(114, 114, 114, 0.3);
+    border-radius: 12px;
+    padding: 19px;
+
+    &-card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 28px;
+
+    }
+
+    &-info {}
+
+    &-brand {
+        margin-top: 12px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 120%;
+    }
+
+    &-name {
+        margin-bottom: 12px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 120%;
+    }
+
+    &-category {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+
+        &_name {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 150%;
+            color: #8056dc;
+            border: 1px solid #8056dc;
+            border-radius: 40px;
+            padding: 0 8px 1px 8px;
+        }
+    }
+
+    &-volume {
+
+        &_list {
+            display: flex;
+            gap: 8px;
+        }
+
+        &_item {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 150%;
+            border: 1px solid #d3d3d3;
+            border-radius: 40px;
+            padding: 4px 12px;
+        }
+    }
+
+    &-price {
+        margin-top: 12px;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 120%;
+    }
+}
+
+.perfume {
+
+    &-raiting {
+
+        &_value {}
+
+        &_stars {}
+
+        &_star {}
+    }
+}
+
+.addToCart {
+    border-radius: 100%;
+    border: 2px solid $text;
+    padding: 21px;
+    cursor: pointer;
+}

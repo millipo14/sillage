@@ -1,0 +1,120 @@
+.cart {
+
+    &-container {
+        padding: 213px 121px 252px 121px;
+        display: grid;
+        grid-template-areas: 'products line calc';
+    }
+
+    &-products {
+        grid-area: products;
+        width: 1057px;
+    }
+
+    &-title {
+        font-weight: 500;
+        font-size: 44px;
+        line-height: 120%;
+
+        &_item {
+            font-weight: 500;
+            font-size: 44px;
+            line-height: 120%;
+            margin-left: 80px;
+        }
+    }
+
+    &-line {
+        grid-area: line;
+        width: 1px;
+        height: auto;
+        background: #656565;
+        margin-left: 152px;
+        margin-right: 64px;
+    }
+
+    &-calc {
+        grid-area: calc;
+        width: 546px;
+    }
+
+    &-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 20px;
+
+        span {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 120%;
+            opacity: 0.7;
+        }
+
+        &_count {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 120%;
+        }
+    }
+
+    &-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        span {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 120%;
+            opacity: 0.7;
+        }
+
+        &_count {
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 120%;
+        }
+    }
+
+    &-order_btn {
+        margin-top: 114px;
+        padding: 18.5px 192px;
+        font-weight: 600;
+        font-size: 22px;
+        color: $second;
+        background: #000;
+        cursor: pointer;
+    }
+}
+
+.line-calc {
+    width: 100%;
+    height: 1px;
+    background: #d9d9d9;
+    margin: 35px 0px 35px 0px;
+}
+
+.total-line {
+    width: 100%;
+    height: 1px;
+    margin: 85px 0 39px 0;
+    background: #656565;
+}
+
+.line-item {
+    margin: 32px 0 32px 80px;
+    width: 977px;
+    height: 1px;
+    background: #d9d9d9;
+}
+
+.empty {
+    grid-area: line;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 120%;
+}

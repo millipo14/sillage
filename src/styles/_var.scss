@@ -1,0 +1,44 @@
+$text: #1A1A1A;
+$second: #FFFFFF;
+
+@mixin desktop {
+    @media (min-width: 1920px) {
+        @content;
+    }
+}
+
+@mixin wide {
+    @media (min-width: 2062px) {
+        @content;
+    }
+}
+
+@mixin max-desktop {
+    @media (max-width: 1919px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (max-width: 1440px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin small-mobile {
+    @media (max-width: 480px) {
+        @content;
+    }
+}

@@ -1,0 +1,26 @@
+.banner {
+    position: relative;
+    background-image: url('./banner_header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 2062 / 998;
+    width: 100%;
+
+    &-title {
+        margin-top: 218px;
+        margin-bottom: 51px;
+        font-weight: 500;
+        font-size: 112px;
+        line-height: 93%;
+        color: $second;
+    }
+
+    &-description {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 150%;
+        color: $second;
+    }
+
+}

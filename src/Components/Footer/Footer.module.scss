@@ -1,0 +1,88 @@
+ .footer {
+     background-color: black;
+     color: $second;
+
+     &-container {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         grid-template-areas:
+             'logo . . .'
+             'contacts about clients other';
+         padding-top: 83px;
+     }
+
+     &-logo {
+         margin-bottom: 84px;
+     }
+
+     &-contacts {
+         grid-area: contacts;
+
+         &_list {
+             padding-top: 22px;
+             display: flex;
+             flex-direction: row;
+             gap: 74px;
+         }
+
+         &_description {
+             font-weight: 500;
+             font-size: 20px;
+             line-height: 120%;
+             opacity: 0.7;
+         }
+     }
+
+     &-title {
+         font-size: 32px;
+         font-weight: 600;
+         line-height: 120%;
+     }
+
+     &-description {
+         margin-top: 26px;
+         margin-bottom: 191px;
+
+         p {
+             margin-bottom: 20px;
+
+             &:last-child {
+                 margin-bottom: 0;
+             }
+
+             a {
+                 font-weight: 500;
+                 font-size: 20px;
+                 line-height: 120%;
+                 opacity: 0.7;
+
+                 &:hover {
+                     opacity: 1;
+                 }
+             }
+         }
+     }
+
+     &-link {
+         display: flex;
+         flex-direction: row;
+         gap: 8px;
+         align-items: center;
+
+         span {
+             opacity: 0.7;
+         }
+     }
+
+     &-about {
+         grid-area: about;
+     }
+
+     &-clients {
+         grid-area: clients;
+     }
+
+     &-other {
+         grid-area: other;
+     }
+ }

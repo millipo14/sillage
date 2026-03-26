@@ -1,0 +1,38 @@
+.subscription {
+
+    &-banner {
+        position: relative;
+        background-image: url('./subscription-banner.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        aspect-ratio: 2062 / 800;
+        width: 100%;
+
+        &_title {
+            padding-top: 128px;
+            font-weight: 500;
+            font-size: 92px;
+            line-height: 120%;
+            color: $second;
+        }
+
+        &_description {
+            margin-top: 44px;
+            margin-bottom: 94px;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 150%;
+            color: $second;
+        }
+    }
+
+    &-link {
+        font-weight: 500;
+        font-size: 22px;
+        color: #4c4c4c;
+        border: 2px solid rgba(114, 114, 114, 0.3);
+        padding: 14px 179px;
+        background: $second;
+    }
+}

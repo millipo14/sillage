@@ -1,0 +1,123 @@
+.header {
+    &-container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        color: $second;
+
+
+    }
+
+    &-logo {
+        text-align: center;
+    }
+
+    &-line {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 1px;
+        background-color: $second;
+        opacity: 0.4;
+    }
+
+    &-nav {
+
+        &_list {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        &_item {}
+
+        &_link {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 150%;
+        }
+    }
+
+    &-actions {
+
+        &_list {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+
+        &_item {}
+
+        &_link {
+            color: $second;
+        }
+    }
+}
+
+.active {
+    border-bottom: 1.5px solid $second;
+}
+
+.banner {
+    position: relative;
+    background-image: url('./banner_header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 2062 / 998;
+    width: 100%;
+}
+
+.text-white {
+    color: $second !important;
+}
+
+.text-black {
+    color: $text !important;
+}
+
+.active-black {
+    border-bottom: 1.5px solid $text;
+}
+
+.line-black {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+    background-color: $text;
+    opacity: 0.4;
+}
+
+
+.cart {
+    position: relative;
+}
+.none-count{
+    display: none;
+}
+
+.cart-count {
+    position: absolute;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    color: #ffffff;
+    top: 0;
+    right: -6px;
+    background-color: #000000;
+    text-align: center;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 18px;
+}

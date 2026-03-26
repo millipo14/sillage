@@ -1,0 +1,9 @@
+.catalog {
+    &-products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 40px;
+        column-gap: 40px;
+        margin-bottom: 74px;
+    }
+}

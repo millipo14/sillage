@@ -1,0 +1,172 @@
+.breadcrumbs {
+    &-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        gap: 4px;
+        padding: 0;
+        margin-top: 76px;
+    }
+
+    &-item:not(:last-child)::after {
+        content: "/";
+        margin-left: 4px;
+        color: #000;
+    }
+
+    &-item {
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 149%;
+        letter-spacing: 0.01em;
+        text-align: center;
+    }
+
+    &-link {
+        text-decoration: none;
+        color: #000;
+    }
+
+    &-current {
+        color: #000;
+    }
+}
+
+.perfume {
+
+    &-container {
+        display: grid;
+        grid-template-areas: 'content image actions';
+        align-items: center;
+        gap: 107px;
+        margin-top: 52px;
+        margin-bottom: 68px;
+        padding-right: 264px;
+        padding-left: 264px;
+    }
+
+    &-content {
+        grid-area: content;
+        width: 450px;
+    }
+
+    &-reviews {
+
+        &_count {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 113%;
+        }
+    }
+
+    &-titles {
+        margin-top: 8px;
+        margin-bottom: 24px;
+    }
+
+    &-title {
+        font-weight: 600;
+        font-size: 52px;
+        line-height: 120%;
+    }
+
+    &-brand {
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 120%;
+        opacity: 0.6;
+    }
+
+    &-price {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 44px;
+
+        &_price {
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 120%;
+        }
+
+        &_volume {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 120%;
+            opacity: 0.8;
+        }
+    }
+
+    &-description {
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 149%;
+        color: #000;
+    }
+
+    &-image {
+        grid-area: image;
+
+        img {
+            width: 528px;
+            height: 682px;
+            object-fit: contain;
+        }
+    }
+
+}
+
+.perfume {
+
+    &-actions {
+        grid-area: actions;
+        width: 394px;
+    }
+}
+
+.volume {
+
+    &-list {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 36px;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 149%;
+        text-align: center;
+        color: #000;
+    }
+
+    &-item {
+        cursor: pointer;
+    }
+
+    &-input {
+        appearance: none;
+        position: absolute;
+    }
+
+    &-input:checked+&-check {
+        color: #8056dc;
+        border: 1px solid #8056dc;
+    }
+
+    &-check {
+        display: block;
+        padding-top: 14px;
+        width: 53px;
+        height: 53px;
+        border: 1px solid #000;
+    }
+}
+
+.addCart {
+    padding: 14px 62px;
+    margin-bottom: 32px;
+    background: #000;
+    font-weight: 600;
+    font-size: 22px;
+    color: $second;
+}
+

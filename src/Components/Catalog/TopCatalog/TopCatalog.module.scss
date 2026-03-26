@@ -1,0 +1,85 @@
+.catalog {
+
+    &-container {
+        margin-top: 28px;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 56px;
+    }
+
+    &-filters {
+        display: flex;
+        align-items: center;
+        gap: 93px;
+    }
+
+    &-products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 40px;
+        column-gap: 40px;
+    }
+
+    &-img {}
+}
+
+.filter {
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 130%;
+        letter-spacing: 0.02em;
+    }
+
+    &-icon {}
+}
+
+.sort {
+    &-select {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 130%;
+        letter-spacing: 0.02em;
+        color: $text;
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        outline: none;
+
+        padding-right: 20%;
+        padding-left: 8px;
+
+        background-image: url('./img/arrow-select.png');
+        background-repeat: no-repeat;
+        background-position: right center;
+
+
+        option {
+            background-color: #FFF0F5;
+            opacity: 0.2;
+            color: $text;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 130%;
+            letter-spacing: 0.02em;
+            border: none;
+            outline: none;
+        }
+
+    }
+}
+
+
+
+
