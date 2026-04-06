@@ -1,0 +1,82 @@
+.brandPage {
+    margin-top: 50px;
+    margin-left: 81px;
+    margin-right: 81px;
+
+    .header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-bottom: 40px;
+        align-items: flex-start;
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+        .logo {
+            flex: 0 0 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f9f9f9;
+            border-radius: 12px;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .name {
+                font-size: 2rem;
+                font-weight: 700;
+                margin: 0;
+            }
+
+            .meta {
+                display: flex;
+                gap: 12px;
+                font-size: 0.9rem;
+                font-weight: 500;
+
+                .country {
+                    background: #f0f0f0;
+                    padding: 4px 8px;
+                    border-radius: 6px;
+                }
+
+                .luxury {
+                    padding: 4px 8px;
+                    border-radius: 6px;
+                    font-weight: 600;
+
+                    &.niche {
+                        background: #e0e0e0;
+                        color: #333;
+                    }
+
+                    &.premium {
+                        background: #222;
+                        color: gold;
+                    }
+                }
+            }
+
+            .description {
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #555;
+                margin-top: 10px;
+            }
+        }
+    }
+}

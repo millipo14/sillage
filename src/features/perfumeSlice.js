@@ -1,11 +1,44 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PERFUMES, PERFUMES_ID } from "../const";
+import { PERFUMES, PERFUMES_ID, PERFUMES_FILTER } from "../const";
 
 export const fetchPerfume = createAsyncThunk(
     'perfume/fetchPerfume',
-    async (page = 1) => {
-        const response = await fetch(`${PERFUMES}?page=${page}&limit=8`);
+    async ({ page = 1, brandId } = {}, { getState }) => {
+
+        const filters = getState().filters;
+
+        // let url = `${PERFUMES}?page=${page}&limit=8`
+        let url = `${PERFUMES}?page=${page}&limit=8&sort=${filters.sort}`
+        // if (brandId) {
+        //     url += `&brand=${brandId}`
+        // }
+        if (filters.brand) url += `&brand=${filters.brand}`
+        
+        // Внутри fetchPerfume в perfumeSlice.js
+        if (filters.gender) url += `&gender=${filters.gender}`;
+
+        // Исправляем блоки цены и категорий
+        if (filters.minPrice !== null && filters.minPrice !== "") {
+            url += `&minPrice=${filters.minPrice}`;
+        }
+        if (filters.maxPrice !== null && filters.maxPrice !== "") {
+            url += `&maxPrice=${filters.maxPrice}`;
+        }
+        if (filters.category) {
+            url += `&category=${encodeURIComponent(filters.category)}`;
+        }
+        if (filters.concentration) {
+            url += `&concentration=${encodeURIComponent(filters.concentration)}`
+        }
+
+        // Ноты
+        if (filters.notes && filters.notes.length > 0) {
+            url += `&notes=${encodeURIComponent(filters.notes.join(','))}`;
+        }
+
+        const response = await fetch(url);
         const data = await response.json();
+
         return {
             perfumes: data.perfumes,
             total: data.total,
@@ -14,6 +47,16 @@ export const fetchPerfume = createAsyncThunk(
         };
     }
 );
+
+export const fetchFilter = createAsyncThunk(
+    'perfume/fetchFilter',
+    async () => {
+        const response = await fetch(PERFUMES_FILTER)
+        const data = await response.json()
+        return data
+    }
+)
+
 export const fetchPerfumeID = createAsyncThunk(
     'perfume/fetchPerfumeID',
     async (id) => {
@@ -32,7 +75,12 @@ const perfumeSlice = createSlice({
         total: 0,
         page: 1,
         totalPages: 0,
-        singlePerfume: null
+        singlePerfume: null,
+        filters: {
+            categories: [],
+            notes: [],
+            concentration: []
+        }
     },
     extraReducers: builder => {
         builder
@@ -62,6 +110,10 @@ const perfumeSlice = createSlice({
             .addCase(fetchPerfumeID.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
+            })
+
+            .addCase(fetchFilter.fulfilled, (state, action) => {
+                state.filters = action.payload;
             })
     }
 })

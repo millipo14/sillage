@@ -4,6 +4,7 @@ import subscriptionReducer from './features/subscriptionSlice'
 import perfumeReducer from './features/perfumeSlice'
 import cartReducer from './features/cartSlice'
 import brandsReducer from "./features/brandsSlice";
+import filterReducer from "./features/filterSlice";
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     perfume: perfumeReducer,
     cart: cartReducer,
     brands: brandsReducer,
+    filters: filterReducer,
 })
 
 export default rootReducer

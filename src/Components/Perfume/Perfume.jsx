@@ -6,9 +6,23 @@ import { IMAGES_URL } from '../../const';
 import { Link } from 'react-router-dom'
 import { addToCart } from '../../features/cartSlice';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
-export const Perfume = ({ perfume }) => {
+export const Perfume = ({ perfume, sourceFrom }) => {
     const dispatch = useDispatch()
+    if (!perfume || perfume.length === 0) {
+        return (
+            <CatalogProducts>
+                <div className={s['no-results']}>
+                    <div className={s['no-results_icon']}>&#10006;</div>
+                    <h3>Ароматы не найдены</h3>
+                    <p>Попробуйте сбросить фильтры или изменить параметры поиска</p>
+                    {/* Если хочешь добавить кнопку сброса прямо тут, можно прокинуть функцию */}
+                </div>
+            </CatalogProducts>
+        );
+    }
+
     return (
         <CatalogProducts>
             {perfume?.map((perfume) => {
@@ -20,17 +34,25 @@ export const Perfume = ({ perfume }) => {
                 return (
                     <div className={s['product']} key={perfume.perfume_id}>
 
-                        <Link to={`/perfume/${perfume.perfume_id}`}>
+                        <Link
+                            to={`/perfume/${perfume.perfume_id}`}
+                            state={
+                                sourceFrom === 'brand'
+                                    ? {
+                                        from: 'brand',
+                                        brandId: perfume.brand.brand_id,
+                                        brandName: perfume.brand.name
+                                    }
+                                    : { from: 'catalog' }
+                            }
+                        >
                             <img
                                 src={`${IMAGES_URL}${perfume.image_url}`}
                                 alt={perfume.name}
                                 className={s['catalog-img']}
                             />
-                        </Link>
 
-                        <div className={s['product-card']}>
-
-                            <Link to={`/perfume/${perfume.perfume_id}`}>
+                            <div className={s['product-card']}>
                                 <div className={s['product-info']}>
                                     <Raiting />
 
@@ -63,25 +85,29 @@ export const Perfume = ({ perfume }) => {
                                     <div className={s['product-price']}>
                                         от {minPrice ? Number(minPrice).toLocaleString('ru-RU') : '-'} ₽
                                     </div>
-
                                 </div>
-                            </Link>
 
-                            <button
-                                className={s['addToCart']}
-                                onClick={() => dispatch(addToCart({
-                                    id: perfume.perfume_id,
-                                    name: perfume.name,
-                                    brand: perfume.brand.name,
-                                    volume: sortVolume[0],
-                                    count: 1,
-                                    image_url: perfume.image_url
-                                }))}
-                            >
-                                <AddToCart />
-                            </button>
+                                <button
+                                    className={s['addToCart']}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        dispatch(addToCart({
+                                            id: perfume.perfume_id,
+                                            name: perfume.name,
+                                            brand: perfume.brand.name,
+                                            volume: sortVolume[0],
+                                            count: 1,
+                                            image_url: perfume.image_url
+                                        }))
+                                    }}>
+                                    <AddToCart />
+                                </button>
 
-                        </div>
+                            </div>
+                        </Link>
+
+
 
                     </div>
                 )

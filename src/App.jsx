@@ -10,6 +10,7 @@ import { Catalog } from './Components/Catalog/Catalog'
 import PerfumePage from './Components/PerfumePage/PerfumePage'
 import { Cart } from './Components/Cart/Cart'
 import { BrandPage } from './Components/BrandPage/BrandPage'
+import { Brand } from './Components/BrandPage/Brand/Brand'
 
 
 const ProtectedRoute = ({ children }) => {
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
         <Route path='/perfume/:id' element={<PerfumePage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/brands' element={<BrandPage />} />
+        <Route path='/brands/:id' element={<Brand />} />
       </Route>
     </>
 

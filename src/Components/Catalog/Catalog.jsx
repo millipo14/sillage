@@ -8,21 +8,24 @@ import { useEffect } from 'react'
 import { fetchPerfume } from '../../features/perfumeSlice'
 import { Pagination } from "../Pagintaion/Pagination"
 
-export const Catalog = () => {
+export const Catalog = ({ brandId, fromPage }) => {
     const dispatch = useDispatch();
     const location = useLocation();
+
     const { perfume, total } = useSelector(state => state.perfume);
     const page = Number(new URLSearchParams(location.search).get('page')) || 1;
 
+    const from = brandId ? 'brand' : 'catalog'
+
     useEffect(() => {
-        dispatch(fetchPerfume(page))
-    }, [dispatch, page])
+        dispatch(fetchPerfume({ page, brandId }))
+    }, [dispatch, page, brandId])
 
     return (
         <Container>
             <TopCatalog total={total} />
-            <Perfume perfume={perfume} />
-            <Pagination/>
+            <Perfume perfume={perfume} sourceFrom={from} />
+            <Pagination />
         </Container>
 
     )

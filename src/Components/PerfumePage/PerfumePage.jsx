@@ -7,6 +7,7 @@ import { fetchPerfumeID } from "../../features/perfumeSlice";
 import { IMAGES_URL } from "../../const";
 import { Accordion } from "../Accordion/Accordion";
 import { addToCart } from '../../features/cartSlice';
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 
 function PerfumePage() {
     const { id } = useParams();
@@ -30,19 +31,7 @@ function PerfumePage() {
 
     return (
         <>
-            <nav className={s['breadcrumbs']} aria-label="хлебные крошки">
-                <ol className={s['breadcrumbs-list']}>
-                    <li className={s['breadcrumbs-item']}>
-                        <a href="/" className={s['breadcrumbs-link']}>Главная</a>
-                    </li>
-                    <li className={s['breadcrumbs-item']}>
-                        <a href="/brands" className={s['breadcrumbs-link']}>Бренды</a>
-                    </li>
-                    <li className={s['breadcrumbs-item']}>
-                        <span className={s['breadcrumbs-current']} aria-current="page">{singlePerfume?.name}</span>
-                    </li>
-                </ol>
-            </nav>
+            <Breadcrumbs currentName={singlePerfume?.name} />
             <section className={s['perfume-container']}>
                 <div className={s['perfume-content']}>
                     <Raiting />
@@ -84,20 +73,20 @@ function PerfumePage() {
                             }
                         </div>
                     </div>
-                    <button 
-                    className={s['addCart']} 
-                    type="submit"
-                    onClick={()=>dispatch(addToCart({
-                        id: singlePerfume.perfume_id,
-                        name: singlePerfume.name,
-                        brand: singlePerfume.brand.name,
-                        volume: selectedVolume,
-                        count: 1,
-                        image_url: singlePerfume.image_url
-                    }))}
+                    <button
+                        className={s['addCart']}
+                        type="submit"
+                        onClick={() => dispatch(addToCart({
+                            id: singlePerfume.perfume_id,
+                            name: singlePerfume.name,
+                            brand: singlePerfume.brand.name,
+                            volume: selectedVolume,
+                            count: 1,
+                            image_url: singlePerfume.image_url
+                        }))}
                     >
                         Добавить в корзину
-                        </button>
+                    </button>
                     <Accordion singlePerfume={singlePerfume} />
                 </div>
             </section>
