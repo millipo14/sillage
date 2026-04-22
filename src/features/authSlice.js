@@ -22,6 +22,7 @@ const authSlice = createSlice({
     initialState: {
         token: localStorage.getItem('token'),
         user: null,
+        isAdmin: false,
         status: 'idle',
         error: null,
     },
@@ -43,6 +44,7 @@ const authSlice = createSlice({
                 state.status = 'success';
                 state.token = action.payload.token;
                 state.user = action.payload.user;
+                state.isAdmin = action.payload.user?.role === 'admin';
                 localStorage.setItem('token', action.payload.token)
             })
             .addCase(fetchAuth.rejected, (state, action) => {

@@ -11,6 +11,7 @@ import {
 } from '../../features/filterSlice';
 import { fetchPerfume, fetchFilter } from '../../features/perfumeSlice';
 import s from './FilterModal.module.scss';
+import DeleteIcon from '../../assets/svg/deleteIcon.svg?react'
 
 export const FilterModal = ({ open, onClose }) => {
     const dispatch = useDispatch();
@@ -140,7 +141,7 @@ export const FilterModal = ({ open, onClose }) => {
                             <div className={s['selected-badges']}>
                                 {tempFilters.notes.map(note => (
                                     <span key={note} className={s['badge']} onClick={() => handleNoteToggle(note)}>
-                                        {note} <small>&times;</small>
+                                        {note} <span className={s['delete-note']}><DeleteIcon/></span>
                                     </span>
                                 ))}
                             </div>

@@ -23,5 +23,9 @@ export const SAMPLES_AVAILABLE = `${API_URL}/samples/available`;
 export const REVIEWS = (perfumeId) => `${API_URL}/reviews/perfume/${perfumeId}`;
 export const REVIEWS_CREATE = `${API_URL}/reviews`;
 
+export const PREFERENCES = `${API_URL}/preferences`;
+export const PREFERENCES_QUIZ = `${API_URL}/preferences/quiz`;
+export const PREFERENCES_QUIZ_OPTIONS = `${API_URL}/preferences/quiz-options`;
+
 export const RECOMMENDATIONS = `${API_URL}/recommendations`;
 export const RECOMMENDATIONS_POPULAR = `${API_URL}/recommendations/popular`;

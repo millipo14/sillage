@@ -11,6 +11,9 @@ import PerfumePage from './Components/PerfumePage/PerfumePage'
 import { Cart } from './Components/Cart/Cart'
 import { BrandPage } from './Components/BrandPage/BrandPage'
 import { Brand } from './Components/BrandPage/Brand/Brand'
+import { AdminPage } from './Components/AdminPage/AdminPage'
+import { QuizPage } from './Components/QuizPage/QuizPage'
+import { Recommendations } from './Components/Recommendations/Recommendations'
 
 
 const ProtectedRoute = ({ children }) => {
@@ -21,12 +24,21 @@ const ProtectedRoute = ({ children }) => {
   return children
 }
 
+//комопнент-обертка
+const AdminRoute = ({ children }) => {
+  const { user } = useSelector(state => state.auth);
+  if (user?.role !== 'admin') {
+    return <Navigate to='/' replace />;
+  }
+  return children;
+};
 const router = createBrowserRouter(
   createRoutesFromElements(
 
     <>
       <Route element={<AuthPage />}>
         <Route path='/login' element={<LoginPage />} />
+        {/* <Route path='/register' element={<RegisterPage />} /> */}
       </Route>
 
       <Route path='/' element={
@@ -41,7 +53,20 @@ const router = createBrowserRouter(
         <Route path='/cart' element={<Cart />} />
         <Route path='/brands' element={<BrandPage />} />
         <Route path='/brands/:id' element={<Brand />} />
+        <Route path='/quiz' element={<QuizPage />} />
+        <Route path='/recommendations' element={<Recommendations />} />
       </Route>
+
+      <Route path='/admin'
+        element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <AdminPage />
+            </AdminRoute>
+          </ProtectedRoute>
+        } />
+
+      <Route path='*' element={<Navigate to='/login' replace />} />
     </>
 
 

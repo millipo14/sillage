@@ -9,7 +9,7 @@ import { fetchAuth } from '../../features/authSlice'
 export const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { token, status } = useSelector(state => state.auth);
+    const { token, status, user } = useSelector(state => state.auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -24,10 +24,14 @@ export const LoginPage = () => {
         }
     };
     useEffect(() => {
-        if (token) {
-            navigate('/');
+        if (token && user) {
+            if (user.role === 'admin') {
+                navigate('/admin')
+            } else {
+                navigate('/')
+            }
         }
-    }, [token, dispatch, navigate])
+    }, [token, dispatch, navigate, user])
 
     return (
         <div className={s['auth']}>

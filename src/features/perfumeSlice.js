@@ -13,7 +13,7 @@ export const fetchPerfume = createAsyncThunk(
         //     url += `&brand=${brandId}`
         // }
         if (filters.brand) url += `&brand=${filters.brand}`
-        
+
         // Внутри fetchPerfume в perfumeSlice.js
         if (filters.gender) url += `&gender=${filters.gender}`;
 
