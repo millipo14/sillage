@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { fetchOrder } from "./orderSlice";
 
 
 const cartItems = JSON.parse(localStorage.getItem('cart') || '[]')
@@ -46,6 +47,13 @@ const cartSlice = createSlice({
             if (item && item.count > 1) item.count -= 1
             localStorage.setItem('cart', JSON.stringify(state.cartItems))
         },
+    },
+    extraReducers: builder => {
+        builder.addCase(fetchOrder.fulfilled, (state) => {
+            state.cartItems = []
+            state.countItems = 0
+            localStorage.removeItem('cart')
+        })
     }
 })
 

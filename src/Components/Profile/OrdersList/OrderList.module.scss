@@ -1,0 +1,61 @@
+.order {
+    margin-top: 64px;
+
+    &-title {
+        margin-bottom: 28px;
+        font-weight: 500;
+        font-size: 44px;
+        line-height: 120%;
+    }
+
+    &-list {}
+
+    &-item {
+        padding: 20px 32px;
+
+        &_content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+    }
+
+    &-id {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 120%;
+    }
+
+    &-date {
+        font-weight: 700;
+        font-size: 20px;
+        opacity: 0.7;
+        line-height: 120%;
+    }
+
+    &-status {}
+
+    &-open {
+        padding: 9px 13.5px;
+        background: #000;
+        font-weight: 600;
+        font-size: 22px;
+        color: $second
+    }
+}
+
+.total {
+
+    &-amount {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 120%
+    }
+}
+
+.order-line {
+    margin-top: 45px;
+    height: 1px;
+    background: #d9d9d9;
+}

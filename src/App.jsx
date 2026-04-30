@@ -14,6 +14,7 @@ import { Brand } from './Components/BrandPage/Brand/Brand'
 import { AdminPage } from './Components/AdminPage/AdminPage'
 import { QuizPage } from './Components/QuizPage/QuizPage'
 import { Recommendations } from './Components/Recommendations/Recommendations'
+import Profile from './Components/Profile/Profile'
 
 
 const ProtectedRoute = ({ children }) => {
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
         <Route path='/brands' element={<BrandPage />} />
         <Route path='/brands/:id' element={<Brand />} />
         <Route path='/quiz' element={<QuizPage />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/recommendations' element={<Recommendations />} />
       </Route>
 

@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux'
 import s from './Cart.module.scss'
 import { CartItem } from './CartItem/CartItem'
+import { useState } from 'react'
+import OrderModal from '../OrderModal/OrderModal'
 
 export const Cart = () => {
     const { cartItems, countItems } = useSelector(state => state.cart)
-
+    const [openModal, setOpenModal] = useState(false)
     const totalItems = cartItems.reduce((sum, item) => sum + item.count, 0)
     const totalPrice = cartItems.reduce((sum, item) => {
         return sum + item.volume.price * item.count
@@ -17,7 +19,7 @@ export const Cart = () => {
                     <>
                         <div className={s['cart-products']}>
                             <div className={s['cart-title_item']}>Итог заказа</div>
-                                <div className={s['line-item']}></div>
+                            <div className={s['line-item']}></div>
                             {cartItems.map(item => (
                                 <CartItem
                                     key={`${item.id}-${item.volume.volume_ml}`}
@@ -54,14 +56,17 @@ export const Cart = () => {
                                 <div className={s['cart-total_count']}>{totalPrice?.toLocaleString('ru-RU')} ₽</div>
                             </div>
 
-                            <button className={s['cart-order_btn']}>К оформлению</button>
+                            <button
+                                onClick={() => setOpenModal(true)}
+                                className={s['cart-order_btn']}
+                            >К оформлению</button>
                         </div>
                     </>
                     : <h3 className={s['empty']}>Вы пока ничего не добавили в корзину</h3>
 
             }
-
-
+            <OrderModal totalPrice={totalPrice} openModal={openModal} onClose={() => setOpenModal(false)} />
         </section>
+
     )
 }

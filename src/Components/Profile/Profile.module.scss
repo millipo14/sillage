@@ -1,0 +1,56 @@
+.profile {
+
+    &-container {
+        margin-top: 114px;
+    }
+}
+
+.user {
+
+    &-info {
+        display: flex;
+        gap: 44px;
+
+    }
+
+    &-profile {
+        width: 445px;
+        height: 196px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 17px;
+        padding: 44px 36px;
+        box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06);
+        background: #fff;
+    }
+
+    &-title {
+        margin-bottom: 32px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 120%;
+    }
+
+    &-username {
+        margin-bottom: 8px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 120%;
+    }
+
+    &-email {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 113%;
+        opacity: 0.66;
+    }
+
+    &-preferences {
+        flex: 1;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 17px;
+        padding: 44px 36px;
+        box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06);
+        background: #fff;
+    }
+}
+

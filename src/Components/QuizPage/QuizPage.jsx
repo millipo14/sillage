@@ -8,7 +8,6 @@ import { fetchQuiz, fetchQuizOptions } from '../../features/preferenceSlice';
 
 
 export const QuizPage = () => {
-
     const { notes, categories } = useSelector(state => state.preferences)
     const dispatch = useDispatch()
     const navigate = useNavigate()

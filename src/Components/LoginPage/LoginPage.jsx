@@ -31,7 +31,7 @@ export const LoginPage = () => {
                 navigate('/')
             }
         }
-    }, [token, dispatch, navigate, user])
+    }, [token, navigate, user])
 
     return (
         <div className={s['auth']}>

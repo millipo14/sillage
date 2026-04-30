@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AUTH_LOGIN } from "../const";
+import { AUTH_LOGIN, AUTH_PROFILE } from "../const";
 
 
 export const fetchAuth = createAsyncThunk(
@@ -17,11 +17,21 @@ export const fetchAuth = createAsyncThunk(
     }
 )
 
+export const fetchUser = createAsyncThunk(
+    'auth/fetchUser',
+    async () => {
+        const response = await fetch(AUTH_PROFILE, {
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        })
+        return await response.json()
+    }
+)
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
         token: localStorage.getItem('token'),
-        user: null,
+        user: JSON.parse(localStorage.getItem('user')) || null,
         isAdmin: false,
         status: 'idle',
         error: null,
@@ -50,6 +60,10 @@ const authSlice = createSlice({
             .addCase(fetchAuth.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
+            })
+            .addCase(fetchUser.fulfilled, (state, action) => {
+                state.user = action.payload
+                localStorage.setItem('user', JSON.stringify(action.payload))
             })
     }
 })

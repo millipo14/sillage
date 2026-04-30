@@ -29,3 +29,6 @@ export const PREFERENCES_QUIZ_OPTIONS = `${API_URL}/preferences/quiz-options`;
 
 export const RECOMMENDATIONS = `${API_URL}/recommendations`;
 export const RECOMMENDATIONS_POPULAR = `${API_URL}/recommendations/popular`;
+
+export const ORDERS = `${API_URL}/orders`;
+export const ORDERS_ID = (id) => `${API_URL}/orders/${id}`;

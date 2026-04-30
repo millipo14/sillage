@@ -50,7 +50,7 @@ export const Header = () => {
 
                 <ul className={s['header-actions_list']}>
                     <li className={s['header-actions_item']}>
-                        <NavLink to="#" className={cn(s['header-actions_link'], textColor)}>
+                        <NavLink to="/profile" className={cn(s['header-actions_link'], textColor)}>
                             <Profile />
                         </NavLink>
                     </li>
