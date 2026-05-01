@@ -1,11 +1,11 @@
 import { CatalogProducts } from '../Layout/CatalogProducts/CatalogProducts'
-import { Raiting } from '../Raiting/Raiting'
+import { Raiting } from '../Rating/Rating'
 import s from './Perfume.module.scss'
 import AddToCart from '../../assets/svg/addToCart.svg?react'
 import { IMAGES_URL } from '../../const';
 import { Link } from 'react-router-dom'
 import { addToCart } from '../../features/cartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 export const Perfume = ({ perfume, sourceFrom }) => {
@@ -17,7 +17,6 @@ export const Perfume = ({ perfume, sourceFrom }) => {
                     <div className={s['no-results_icon']}>&#10006;</div>
                     <h3>Ароматы не найдены</h3>
                     <p>Попробуйте сбросить фильтры или изменить параметры поиска</p>
-                    {/* Если хочешь добавить кнопку сброса прямо тут, можно прокинуть функцию */}
                 </div>
             </CatalogProducts>
         );
@@ -30,6 +29,8 @@ export const Perfume = ({ perfume, sourceFrom }) => {
                 const volumes = perfume.volumes || []
                 const sortVolume = [...volumes].sort((a, b) => a.volume_ml - b.volume_ml)
                 const minPrice = volumes.length > 0 ? Math.min(...volumes.map(v => v.price)) : 0;
+
+                const currentRating = perfume.rating || 0;
 
                 return (
                     <div className={s['product']} key={perfume.perfume_id}>
@@ -54,7 +55,7 @@ export const Perfume = ({ perfume, sourceFrom }) => {
 
                             <div className={s['product-card']}>
                                 <div className={s['product-info']}>
-                                    <Raiting />
+                                    <Raiting currentRating={currentRating} />
 
                                     <div className={s['product-brand']}>
                                         {perfume.brand.name}
@@ -106,9 +107,6 @@ export const Perfume = ({ perfume, sourceFrom }) => {
 
                             </div>
                         </Link>
-
-
-
                     </div>
                 )
             }

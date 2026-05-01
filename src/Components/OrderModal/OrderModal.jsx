@@ -53,7 +53,7 @@ export default function OrderModal({ totalPrice, openModal, onClose }) {
                 <div className={s.content}>
                     <div className={s.info}>
                         <span>Сумма заказа:</span>
-                        <span className={s.price}>{totalPrice} ₽</span>
+                        <span className={s.price}>{totalPrice.toLocaleString('ru-RU')} ₽</span>
                     </div>
 
                     <div className={s.inputGroup}>

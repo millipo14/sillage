@@ -1,0 +1,40 @@
+.rating {
+    display: flex;
+    flex-direction: row;
+
+    .value {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 113%;
+    }
+
+    .stars {
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        padding: 0 7px;
+    }
+
+    .star {
+
+        svg {
+            width: 18px;
+            height: auto;
+
+            path {
+                fill: #8056DC;
+                opacity: 0.5;
+            }
+        }
+
+        &.full svg path {
+            fill: #8056DC;
+            opacity: 1;
+        }
+
+        &.half svg path {
+            fill: url(#halfGrad);
+            opacity: 1;
+        }
+    }
+}

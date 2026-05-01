@@ -1,0 +1,151 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); // Чуть мягче фон
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px); // Чуть больше блюра для акцента на модалке
+}
+
+.modal {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px; // Более мягкие углы под стиль парфюмерии
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease-out; // Та самая анимация
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ccc;
+    line-height: 1;
+
+    &:hover {
+        color: #8056DC; // Твой акцентный цвет
+    }
+}
+
+.title {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+}
+
+// Стили для выбора звезд
+.ratingSelection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+
+    .starBtn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: transform 0.2s;
+
+        svg {
+            width: 32px;
+            height: auto;
+
+            path {
+                fill: #8056DC;
+                opacity: 0.2; // Пустая звезда
+                transition: opacity 0.2s;
+            }
+        }
+
+        &.active svg path {
+            opacity: 1; // Закрашенная звезда
+        }
+
+        &:hover {
+            transform: scale(1.1); // Эффект при наведении
+        }
+    }
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+    }
+}
+
+.textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    border-radius: 12px;
+    resize: none;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 0.2s;
+
+    &:focus {
+        outline: none;
+        border-color: #8056DC;
+        background: #fff;
+    }
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 16px;
+    background: black; // Фиолетовый под стиль Sillage
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+
+    &:hover {
+        background: darken(#8056DC, 5%);
+        box-shadow: 0 5px 15px rgba(128, 86, 220, 0.3);
+    }
+
+    &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px); 
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -134,3 +134,19 @@
     font-size: 22px;
     color: $second;
 }
+
+.perfume-raiting {
+    display: flex;
+    align-items: center;
+}
+
+.perfume-raiting_value,
+.perfume-review_value {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 113%;
+}
+
+.point {
+    margin-right: 7px;
+}

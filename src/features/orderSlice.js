@@ -46,7 +46,7 @@ const orderSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(fetchOrder.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+                state.status = 'success';
                 state.lastOrder = action.payload;
                 state.error = null;
             })
@@ -55,7 +55,7 @@ const orderSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(fetchOrderUser.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+                state.status = 'success';
                 state.userOrders = action.payload;
             })
     }

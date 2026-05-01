@@ -3,7 +3,8 @@ import { Container } from '../Layout/Container/Container'
 import s from './Profile.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../features/authSlice';
-import OrdersList from './OrdersList/OrdersList';
+import OrdersList from '../OrdersList/OrdersList';
+
 
 export default function Profile() {
     const { user } = useSelector(state => state.auth)
@@ -27,7 +28,7 @@ export default function Profile() {
                     </div>
                 </section>
 
-                <OrdersList />
+               <OrdersList />
             </div>
         </Container>
     )

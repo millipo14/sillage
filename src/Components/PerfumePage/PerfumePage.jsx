@@ -1,4 +1,4 @@
-import { Raiting } from "../Raiting/Raiting";
+import { Raiting } from "../Rating/Rating";
 import s from './PerfumePage.module.scss'
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,16 +8,30 @@ import { IMAGES_URL } from "../../const";
 import { Accordion } from "../Accordion/Accordion";
 import { addToCart } from '../../features/cartSlice';
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import Reviews from "../Reviews/Reviews";
+import { fetchReview } from "../../features/reviewSlice";
 
 function PerfumePage() {
     const { id } = useParams();
     const dispatch = useDispatch()
     const { singlePerfume } = useSelector(state => state.perfume)
+    const { averageRating, total, ratingBar } = useSelector(state => state.reviews)
     const [selectedVolume, setSelectedVolume] = useState(null)
+
+    const getReviewWord = (total) => {
+        total = Math.abs(total) % 100;
+        const lastDigit = total % 10;
+
+        if (total > 10 && total < 20) return 'отзывов';
+        if (lastDigit === 1) return 'отзыв';
+        if (lastDigit >= 2 && lastDigit <= 4) return 'отзыва';
+        return 'отзывов';
+    }
 
     useEffect(() => {
         dispatch(fetchPerfumeID(id))
-    }, [dispatch, id])
+        dispatch(fetchReview(id))
+    }, [id])
 
     useEffect(() => {
         if (singlePerfume?.volumes?.length > 0) {
@@ -34,7 +48,12 @@ function PerfumePage() {
             <Breadcrumbs currentName={singlePerfume?.name} />
             <section className={s['perfume-container']}>
                 <div className={s['perfume-content']}>
-                    <Raiting />
+                    {!total ? 'отзывов пока нет' : <div className={s['perfume-raiting']}>
+                        <span className={s['perfume-raiting_value']}>{averageRating}</span>
+                        <Raiting currentRating={averageRating} />
+                        <span className={s['point']}>•</span>
+                        <span className={s['perfume-review_value']}>{total} {getReviewWord(total)}</span>
+                    </div>}
                     <div className={s['perfume-titles']}>
                         <div className={s['perfume-title']}>{singlePerfume?.name}</div>
                         <p className={s['perfume-brand']}>{singlePerfume?.brand?.name}</p>
@@ -90,6 +109,7 @@ function PerfumePage() {
                     <Accordion singlePerfume={singlePerfume} />
                 </div>
             </section>
+            <Reviews />
         </>
     );
 }

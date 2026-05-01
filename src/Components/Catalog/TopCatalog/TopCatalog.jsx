@@ -51,6 +51,7 @@ export const TopCatalog = ({ total }) => {
                             onChange={handleSortChange}
                         >
                             <option value="popularity">по популярности</option>
+                            <option value='rating'>по рейтингу</option>
                             <option value="price-asc">по цене &uarr;</option>
                             <option value="price-desc">по цене &darr;</option>
                         </select>

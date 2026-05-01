@@ -65,7 +65,10 @@ export const Cart = () => {
                     : <h3 className={s['empty']}>Вы пока ничего не добавили в корзину</h3>
 
             }
-            <OrderModal totalPrice={totalPrice} openModal={openModal} onClose={() => setOpenModal(false)} />
+            <OrderModal
+                totalPrice={totalPrice}
+                openModal={openModal}
+                onClose={() => setOpenModal(false)} />
         </section>
 
     )
