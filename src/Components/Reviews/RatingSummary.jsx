@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import s from './Reviews.module.scss'
-import { Raiting } from '../Rating/Rating'
+import { Raiting } from '../UI/Rating/Rating';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchReview } from '../../features/reviewSlice'
 import { useParams } from 'react-router-dom'

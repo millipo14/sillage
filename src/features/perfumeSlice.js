@@ -82,6 +82,13 @@ const perfumeSlice = createSlice({
             concentration: []
         }
     },
+    reducers: {
+        clearPerfumes: (state) => {
+            state.perfume = []
+            state.total = 0
+            state.status = 'idle'
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(fetchPerfume.pending, (state) => {
@@ -117,5 +124,5 @@ const perfumeSlice = createSlice({
             })
     }
 })
-
+export const { clearPerfumes } = perfumeSlice.actions
 export default perfumeSlice.reducer

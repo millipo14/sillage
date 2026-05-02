@@ -4,9 +4,35 @@ import { Catalog } from "../Catalog/Catalog"
 import s from './MainPage.module.scss'
 import { Container } from "../Layout/Container/Container";
 import ScrollContainer from "react-indiana-drag-scroll";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchRecommendations } from "../../features/recommendationSlice";
+import { fetchUserPrefs } from "../../features/preferenceSlice";
+import Loader from "../UI/Loader/Loader";
 
 export const MainPage = () => {
-    const isQuizPassed = false;
+    const dispatch = useDispatch()
+    const { userRecommend } = useSelector(state => state.recommendations)
+    const { userPrefs, status } = useSelector(state => state.preferences)
+
+    useEffect(() => {
+        dispatch(fetchUserPrefs());
+    }, [dispatch])
+    const isQuizPassed = userPrefs && (
+        (userPrefs.category_preferences?.length > 0) ||
+        (userPrefs.note_preferences?.length > 0)
+    )
+
+    useEffect(() => {
+        if (isQuizPassed) {
+            dispatch(fetchRecommendations())
+        }
+    }, [isQuizPassed])
+
+    if (status === 'loading' || status === 'idle') {
+        return <Loader />;
+    }
+
     return (
         <>
             <Container>

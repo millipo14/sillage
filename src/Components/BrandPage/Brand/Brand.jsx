@@ -6,7 +6,7 @@ import { fetchBrands } from "../../../features/brandsSlice"
 import { IMAGES_URL } from '../../../const'
 import s from './Brand.module.scss'
 import { setBrand } from "../../../features/filterSlice"
-import { fetchPerfume } from "../../../features/perfumeSlice"
+import { clearPerfumes, fetchPerfume } from "../../../features/perfumeSlice"
 
 export const Brand = () => {
     const { id } = useParams()
@@ -19,14 +19,15 @@ export const Brand = () => {
         if (!brands || brands.length === 0) {
             dispatch(fetchBrands())
         }
-
+        dispatch(clearPerfumes())
         dispatch(setBrand(id))
-        dispatch(fetchPerfume({ page: 1 }))
+        dispatch(fetchPerfume({ page: 1, brandId: id }))
 
         return () => {
             dispatch(setBrand(null))
+            dispatch(clearPerfumes())
         }
-    }, [dispatch, brands, id])
+    }, [dispatch, id])
 
     return (
         <>

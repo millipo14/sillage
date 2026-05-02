@@ -1,5 +1,5 @@
 import s from './Rating.module.scss'
-import Star from '../../assets/svg/star.svg?react'
+import Star from '../../../assets/svg/star.svg?react'
 import cn from 'classnames'
 
 export const Raiting = ({ currentRating = 0, showCurrentRating = false, className = '', starsClassName = '' }) => {

@@ -5,16 +5,21 @@ import { useEffect } from 'react'
 import { fetchBrands } from '../../features/brandsSlice'
 import { IMAGES_URL } from '../../const'
 import { useNavigate } from 'react-router-dom'
+import Loader from '../UI/Loader/Loader'
 
 export const BrandPage = () => {
     const dispatch = useDispatch()
-    const { brands } = useSelector(state => state.brands)
+    const { brands, status } = useSelector(state => state.brands)
     const navigate = useNavigate()
-
 
     useEffect(() => {
         dispatch(fetchBrands())
     }, [dispatch]);
+
+
+    if (status === 'loading') {
+        return <Loader />
+    }
 
     return (
         <Container className={s['brands']}>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import s from './ReviewList.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchReview } from '../../../features/reviewSlice'
-import { Raiting } from '../../Rating/Rating'
+import { Raiting } from '../../UI/Rating/Rating';
 import { useParams } from 'react-router-dom'
 import ScrollContainer from 'react-indiana-drag-scroll'
 

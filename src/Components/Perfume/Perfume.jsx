@@ -1,5 +1,5 @@
 import { CatalogProducts } from '../Layout/CatalogProducts/CatalogProducts'
-import { Raiting } from '../Rating/Rating'
+import { Raiting } from '../UI/Rating/Rating'
 import s from './Perfume.module.scss'
 import AddToCart from '../../assets/svg/addToCart.svg?react'
 import { IMAGES_URL } from '../../const';
@@ -8,10 +8,14 @@ import { addToCart } from '../../features/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-export const Perfume = ({ perfume, sourceFrom, isHome }) => {
+export const Perfume = ({ perfume, sourceFrom, isHome, status }) => {
     const dispatch = useDispatch()
 
-    if (!perfume || perfume.length === 0) {
+    if (status === 'loading' && (!perfume || perfume.length === 0)) {
+        return null;
+    }
+
+    if (status !== 'loading' && (!perfume || perfume.length === 0)) {
         return (
             <CatalogProducts>
                 <div className={s['no-results']}>
@@ -45,7 +49,9 @@ export const Perfume = ({ perfume, sourceFrom, isHome }) => {
                                         brandId: perfume.brand.brand_id,
                                         brandName: perfume.brand.name
                                     }
-                                    : { from: 'catalog' }
+                                    : sourceFrom === 'recommendations'
+                                        ? { from: 'recommendations' }
+                                        : { from: 'catalog' }
                             }
                         >
                             <img

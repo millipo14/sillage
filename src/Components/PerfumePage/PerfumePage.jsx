@@ -1,4 +1,4 @@
-import { Raiting } from "../Rating/Rating";
+import { Raiting } from '../UI/Rating/Rating';
 import s from './PerfumePage.module.scss'
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { addToCart } from '../../features/cartSlice';
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import Reviews from "../Reviews/Reviews";
 import { fetchReview } from "../../features/reviewSlice";
+
 
 function PerfumePage() {
     const { id } = useParams();

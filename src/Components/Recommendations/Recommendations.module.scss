@@ -1,5 +1,23 @@
+.recommendationsSection {
+    padding: 40px 0 60px;
+}
 
-.rec{
-    display: flex;
+.rec {
+    font-size: 28px;
+    font-weight: 600;
     text-align: center;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
 }

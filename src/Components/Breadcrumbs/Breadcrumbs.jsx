@@ -16,7 +16,13 @@ export const Breadcrumbs = ({ currentName }) => {
                 <li className={s['breadcrumbs-item']}>
                     <Link to="/" className={s['breadcrumbs-link']}>Главная</Link>
                 </li>
-
+                {fromPage === 'recommendations' && (
+                    <li className={s['breadcrumbs-item']}>
+                        <Link to="/recommendations" className={s['breadcrumbs-link']}>
+                            Рекомендации
+                        </Link>
+                    </li>
+                )}
                 {fromPage === 'brand' && brandName && (
                     <>
                         <li className={s['breadcrumbs-item']}>
