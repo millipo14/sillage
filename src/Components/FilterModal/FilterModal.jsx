@@ -136,12 +136,12 @@ export const FilterModal = ({ open, onClose }) => {
                     <section className={s['filter-section']}>
                         <h4 className={s['section-title']}>Ноты состава</h4>
 
-                        {/* Блок выбранных нот (тот самый крутой фильтр) */}
+                        {/* Блок выбранных нот */}
                         {tempFilters.notes.length > 0 && (
                             <div className={s['selected-badges']}>
                                 {tempFilters.notes.map(note => (
                                     <span key={note} className={s['badge']} onClick={() => handleNoteToggle(note)}>
-                                        {note} <span className={s['delete-note']}><DeleteIcon/></span>
+                                        {note} <span className={s['delete-note']}><DeleteIcon /></span>
                                     </span>
                                 ))}
                             </div>

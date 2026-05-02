@@ -8,8 +8,9 @@ import { addToCart } from '../../features/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-export const Perfume = ({ perfume, sourceFrom }) => {
+export const Perfume = ({ perfume, sourceFrom, isHome }) => {
     const dispatch = useDispatch()
+
     if (!perfume || perfume.length === 0) {
         return (
             <CatalogProducts>
@@ -23,7 +24,7 @@ export const Perfume = ({ perfume, sourceFrom }) => {
     }
 
     return (
-        <CatalogProducts>
+        <CatalogProducts className={isHome ? s.oneLine : ''}>
             {perfume?.map((perfume) => {
                 const category = perfume.perfume_category?.split(' ') || [];
                 const volumes = perfume.volumes || []

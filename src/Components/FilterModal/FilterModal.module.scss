@@ -206,12 +206,13 @@
     }
 }
 
-.selected-badges{
+.selected-badges {
     display: flex;
     flex-direction: row;
     gap: 7px;
     flex-wrap: wrap;
 }
+
 .badge {
     display: flex;
     flex-direction: row;
@@ -225,5 +226,15 @@
 }
 
 .delete-note {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 15px;
+    height: 15px;
+
+    svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 }

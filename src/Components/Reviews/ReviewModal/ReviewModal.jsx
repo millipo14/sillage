@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import s from './ReviewModal.module.scss';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReview, fetchReviewUser } from '../../features/reviewSlice';
-import Star from '../../assets/svg/star.svg?react'
+import { fetchReview, fetchReviewUser } from '../../../features/reviewSlice';
+import Star from '../../../assets/svg/star.svg?react'
 import cn from 'classnames'
 
 export default function ReviewModal({ openModal, onClose }) {

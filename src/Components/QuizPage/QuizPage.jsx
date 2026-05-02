@@ -21,8 +21,7 @@ export const QuizPage = () => {
 
     useEffect(() => {
         dispatch(fetchQuizOptions())
-        console.log(dispatch(fetchQuizOptions()))
-    }, [dispatch])
+    }, [])
 
     const quizData = useMemo(() => {
         return [
@@ -73,6 +72,7 @@ export const QuizPage = () => {
         if (step < quizData.length - 1) {
             setStep(prev => prev + 1)
         } else {
+            console.log('Отправляем ответы:', answers)
             dispatch(fetchQuiz(answers)).then(() => {
                 navigate('/recommendations')
             })

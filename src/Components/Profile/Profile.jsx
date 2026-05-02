@@ -4,6 +4,7 @@ import s from './Profile.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../features/authSlice';
 import OrdersList from '../OrdersList/OrdersList';
+import UserPreferences from '../UserPreferences/UserPreferences';
 
 
 export default function Profile() {
@@ -22,13 +23,14 @@ export default function Profile() {
                         <div className={s["user-title"]}>Профиль</div>
                         <div className={s["user-username"]}>{user?.first_name} {user?.last_name}</div>
                         <div className={s["user-email"]}>{user?.email}</div>
+                        <span>{user.subscription_status === 'active' ? 'Подписка активна' : 'Подписки нет'}</span>
                     </div>
                     <div className={s["user-preferences"]}>
-                        <h2>{user.subscription_status === 'active' ? 'Подписка активна' : 'Подписки нет'}</h2>
+                        <h2 className={s["user-title"]}>Ваши предпочтения</h2>
+                        <UserPreferences />
                     </div>
                 </section>
-
-               <OrdersList />
+                <OrdersList />
             </div>
         </Container>
     )

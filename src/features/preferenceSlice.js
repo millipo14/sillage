@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PREFERENCES_QUIZ, PREFERENCES_QUIZ_OPTIONS } from "../const";
+import { PREFERENCES, PREFERENCES_QUIZ, PREFERENCES_QUIZ_OPTIONS } from "../const";
 
 
 export const fetchQuiz = createAsyncThunk(
@@ -31,6 +31,19 @@ export const fetchQuizOptions = createAsyncThunk(
     }
 )
 
+export const fetchUserPrefs = createAsyncThunk(
+    'preferences/fetchUserPrefs',
+    async () => {
+        const response = await fetch(PREFERENCES, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        return await response.json()
+    }
+)
+
+
 const preferenceSlice = createSlice(
     {
         name: 'preferences',
@@ -39,6 +52,7 @@ const preferenceSlice = createSlice(
             error: null,
             categories: [],
             notes: [],
+            userPrefs: [],
         },
         extraReducers: builder => {
             builder
@@ -47,8 +61,13 @@ const preferenceSlice = createSlice(
                     state.categories = action.payload.categories
                     state.notes = action.payload.notes
                 })
-                .addCase(fetchQuiz.fulfilled, (state) => {
+                .addCase(fetchQuiz.fulfilled, (state, action) => {
                     state.status = 'success';
+                    state.userPrefs = action.payload
+                })
+                .addCase(fetchUserPrefs.fulfilled, (state, action) => {
+                    state.status = 'success';
+                    state.userPrefs = action.payload
                 })
         }
     }

@@ -1,0 +1,48 @@
+.preferences-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.pref-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pref-label {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 113%;
+    opacity: 0.6;
+}
+
+.pref-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.badge {
+    background: #f6f6f4;
+    border-radius: 40px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &--note {
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+.no-prefs {
+    margin-top: 20px;
+    font-size: 15px;
+    opacity: 0.5;
+    font-style: italic;
+}

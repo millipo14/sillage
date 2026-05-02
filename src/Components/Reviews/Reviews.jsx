@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Container } from '../Layout/Container/Container'
 import s from './Reviews.module.scss'
 import RatingSummary from './RatingSummary'
-import ReviewList from './ReviewList'
-import ReviewModal from './ReviewModal'
+import ReviewList from './ReviewList/ReviewList'
+import ReviewModal from './ReviewModal/ReviewModal'
 
 
 export default function Reviews() {
@@ -11,13 +11,15 @@ export default function Reviews() {
 
     return (
         <div>
-            <Container>
-                <div className={s["ratingAndReviews"]}>
+            <div className={s["ratingAndReviews"]}>
+                <Container>
                     <div className={s["rating-title"]}>Рейтинг и отзывы</div>
-
                     <RatingSummary />
-                    <ReviewList />
+                </Container>
 
+                <ReviewList />
+
+                <Container>
                     <button
                         onClick={() => setOpenModal(true)}
                         className={s["btn-review"]}>
@@ -28,8 +30,9 @@ export default function Reviews() {
                         openModal={openModal}
                         onClose={() => setOpenModal(false)}
                     />
-                </div >
-            </Container >
+                </Container >
+            </div >
+
         </div >
     )
 }
