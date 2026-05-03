@@ -16,6 +16,7 @@ import { QuizPage } from './Components/QuizPage/QuizPage'
 import { Recommendations } from './Components/Recommendations/Recommendations'
 import Profile from './Components/Profile/Profile'
 import Reviews from './Components/Reviews/Reviews'
+import SelectionSample from './Components/SelectionSample/SelectionSample'
 
 
 const ProtectedRoute = ({ children }) => {
@@ -58,6 +59,7 @@ const router = createBrowserRouter(
         <Route path='/quiz' element={<QuizPage />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/reviews' element={<Reviews />} />
+        <Route path='/selectsample' element={<SelectionSample />} />
         <Route path='/recommendations' element={<Recommendations />} />
       </Route>
 

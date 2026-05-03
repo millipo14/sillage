@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import s from './OrderModal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrder } from '../../features/orderSlice';
+import { createSubscription } from '../../features/subscriptionSlice';
 
-export default function OrderModal({ totalPrice, openModal, onClose }) {
+export default function OrderModal({ totalPrice, openModal, onClose, isSubscription = false }) {
     const [address, setAddress] = useState('')
     const dispatch = useDispatch()
     const { cartItems } = useSelector(state => state.cart)
+    const { selectedSamples, activePlan } = useSelector(state => state.subscriptionPlans)
+    const { user } = useSelector(state => state.auth)
+    const status = useSelector(state => isSubscription ? state.subscriptionPlans.loading : state.order.status)
 
     if (!openModal) return null;
 
@@ -15,34 +19,57 @@ export default function OrderModal({ totalPrice, openModal, onClose }) {
             alert('Введите адрес доставки')
             return
         }
-        const order = {
-            items: cartItems.map((item) => {
-                let pureVolume = item.volume;
-
-                if (Array.isArray(item.volume)) {
-                    pureVolume = item.volume[0]?.volume_ml;
-                } else if (typeof item.volume === 'object' && item.volume !== null) {
-                    pureVolume = item.volume.volume_ml;
-                }
-
-                return {
+        if (isSubscription) {
+            const subscriptionData = {
+                plan_id: activePlan.plan_id,
+                customer_id: user.customer_id,
+                custom_samples: selectedSamples.map(item => ({
                     perfume_id: item.id,
-                    quantity: item.count,
-                    product_type: 'perfume',
-                    volume: pureVolume
-                };
-            }),
-            shipping_address: address
-        };
+                    volume_ml: Number(activePlan.sample_volume_ml)
+                })),
+                shipping_address: address,
+                start_date: new Date().toISOString().split('T')[0]
+            }
+            dispatch(createSubscription(subscriptionData))
+                .unwrap()
+                .then(() => {
+                    alert('Подписка успешно оформлена!')
+                    onClose();
+                })
+                .catch((error) => {
+                    const message = typeof error === 'string' ? error : (error?.error || "Произошла ошибка при оформлении")
+                    alert(message);
+                });
+        } else {
+            const order = {
+                items: cartItems.map((item) => {
+                    let pureVolume = item.volume;
 
-        dispatch(fetchOrder(order))
-            .unwrap()
-            .then(() => {
-                alert('Заказ оформлен!')
-                onClose()
-            })
-            .catch(e => alert(`ERROR: ${e.message}`))
+                    if (Array.isArray(item.volume)) {
+                        pureVolume = item.volume[0]?.volume_ml;
+                    } else if (typeof item.volume === 'object' && item.volume !== null) {
+                        pureVolume = item.volume.volume_ml;
+                    }
+
+                    return {
+                        perfume_id: item.id,
+                        quantity: item.count,
+                        product_type: 'perfume',
+                        volume: pureVolume
+                    };
+                }),
+                shipping_address: address
+            }
+            dispatch(fetchOrder(order))
+                .unwrap()
+                .then(() => {
+                    alert('Заказ оформлен!')
+                    onClose()
+                })
+                .catch(e => alert(`Ошибка заказа: ${e.message}`))
+        }
     }
+
     return (
         <div className={s.overlay} onClick={onClose}>
             <div className={s.modal} onClick={(e) => e.stopPropagation()}>

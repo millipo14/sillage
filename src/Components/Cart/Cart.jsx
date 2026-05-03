@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import s from './Cart.module.scss'
-import { CartItem } from './CartItem/CartItem'
+import { CartItem } from '../UI/CartItem/CartItem'
 import { useState } from 'react'
 import OrderModal from '../OrderModal/OrderModal'
+import { decrementItem, incrementItem, removeFromCart } from '../../features/cartSlice'
 
 export const Cart = () => {
     const { cartItems, countItems } = useSelector(state => state.cart)
@@ -11,6 +12,7 @@ export const Cart = () => {
     const totalPrice = cartItems.reduce((sum, item) => {
         return sum + item.volume.price * item.count
     }, 0)
+    const dispatch = useDispatch()
 
     return (
         <section className={s['cart-container']}>
@@ -23,12 +25,10 @@ export const Cart = () => {
                             {cartItems.map(item => (
                                 <CartItem
                                     key={`${item.id}-${item.volume.volume_ml}`}
-                                    id={item.id}
-                                    name={item.name}
-                                    brand={item.brand}
-                                    image_url={item.image_url}
-                                    volume={item.volume}
-                                    count={item.count}
+                                    item={item}
+                                    removeItem={() => dispatch(removeFromCart({ id: item.id, volume: item.volume }))}
+                                    incrementItem={() => dispatch(incrementItem({ id: item.id, volume: item.volume }))}
+                                    decrementItem={() => dispatch(decrementItem({ id: item.id, volume: item.volume }))}
                                 />
                             ))}
                         </div>

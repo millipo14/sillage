@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom'
 import { addToCart } from '../../features/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { addSampleSubscription } from '../../features/subscriptionSlice';
 
-export const Perfume = ({ perfume, sourceFrom, isHome, status }) => {
+export const Perfume = ({ perfume, sourceFrom, isHome, status, isSelectionSample }) => {
     const dispatch = useDispatch()
 
     if (status === 'loading' && (!perfume || perfume.length === 0)) {
@@ -100,14 +101,19 @@ export const Perfume = ({ perfume, sourceFrom, isHome, status }) => {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
-                                        dispatch(addToCart({
+                                        const perfumeData = {
                                             id: perfume.perfume_id,
                                             name: perfume.name,
                                             brand: perfume.brand.name,
                                             volume: sortVolume[0],
                                             count: 1,
                                             image_url: perfume.image_url
-                                        }))
+                                        }
+                                        if (isSelectionSample) {
+                                            dispatch(addSampleSubscription(perfumeData))
+                                        } else {
+                                            dispatch(addToCart(perfumeData))
+                                        }
                                     }}>
                                     <AddToCart />
                                 </button>

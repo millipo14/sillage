@@ -9,7 +9,7 @@ import { fetchPerfume } from '../../features/perfumeSlice'
 import { Pagination } from "../Pagintaion/Pagination"
 import Loader from "../UI/Loader/Loader";
 
-export const Catalog = ({ brandId, isHome = false, isRecommendations = false }) => {
+export const Catalog = ({ brandId, isHome = false, isRecommendations = false, isSelectionSample = false }) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
@@ -54,6 +54,7 @@ export const Catalog = ({ brandId, isHome = false, isRecommendations = false }) 
                     perfume={displayItems}
                     sourceFrom={from}
                     status={currentStatus}
+                    isSelectionSample={isSelectionSample}
                 />
             </div>
 

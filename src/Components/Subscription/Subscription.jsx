@@ -3,14 +3,22 @@ import s from './Subscription.module.scss'
 import { Container } from '../Layout/Container/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { fetchSubscription } from '../../features/subscriptionSlice'
+import { fetchSubscription, setActivePlan } from '../../features/subscriptionSlice'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Subscription = () => {
     const dispatch = useDispatch()
     const { subscriptionPlans } = useSelector(state => state.subscriptionPlans)
+    const navigate = useNavigate()
+
     useEffect(() => {
         dispatch(fetchSubscription())
     }, [dispatch])
+
+    const handlePlan = (plan) => {
+        dispatch(setActivePlan(plan))
+        navigate('/selectsample')
+    }
 
     return (
         <Container className={s['subscription']}>
@@ -19,7 +27,8 @@ export const Subscription = () => {
                 аромат без риска покупки полного флакона
             </div>
             <div className={s['subscription-tarifs']}>
-                {subscriptionPlans?.map((plan, index) => (
+                {subscriptionPlans?.map((plan, index) =>
+                (
                     <div
                         key={plan.plan_id}
                         className={cn(s['subscription-tarif'],
@@ -42,7 +51,7 @@ export const Subscription = () => {
                                 {parseFloat(plan.price_per_month)} ₽
                                 <span>/ в месяц</span>
                             </div>
-                            <button className={s['subscription-tarif_start']}>Начать</button>
+                            <button onClick={() => handlePlan(plan)} className={s['subscription-tarif_start']}>Начать</button>
                         </div>
                     </div>
                 ))}

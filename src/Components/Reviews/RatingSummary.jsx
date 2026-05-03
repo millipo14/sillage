@@ -24,6 +24,7 @@ export default function RatingSummary() {
         if (lastDigit >= 2 && lastDigit <= 4) return 'отзыва';
         return 'отзывов';
     }
+
     if (!total) {
         return <h2>У этого парфюма пока нет отзывов. Станьте первым!</h2>
     }

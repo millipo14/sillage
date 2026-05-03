@@ -1,0 +1,176 @@
+.sample-title {
+    margin-top: 50px;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    color: #2b2b2b;
+}
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sample-title {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #2b2b2b;
+}
+
+.catalog-wrapper {
+    margin-bottom: 80px;
+}
+
+.floating-cart {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    padding: 30px;
+    border-radius: 50%;
+    background: #8056DC;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    .badge {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        background: $text;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 550px; // Чуть шире для CartItem
+    max-height: 90vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 90vh;
+    border-radius: 16px;
+    position: relative;
+    padding: 30px;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Стили самой сводки (внутри модалки) */
+.summary {
+    h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.secret-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+
+    .secret-icon {
+        width: 40px;
+        height: 40px;
+        background: #eee;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    span {
+        font-size: 14px;
+        color: #777;
+    }
+}
+
+.order-btn {
+    width: 100%;
+    padding: 18px;
+    background: #2b2b2b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+}
