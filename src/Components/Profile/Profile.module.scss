@@ -15,7 +15,7 @@
 
     &-profile {
         width: 445px;
-        height: 196px;
+        max-height: 196px;
         border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 17px;
         padding: 44px 36px;
@@ -46,6 +46,9 @@
     }
 
     &-preferences {
+        display: flex;
+        justify-content: space-between;
+        max-height: 196px;
         flex: 1;
         border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 17px;
@@ -54,4 +57,3 @@
         background: #fff;
     }
 }
-

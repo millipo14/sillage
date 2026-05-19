@@ -1,0 +1,207 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* CARD */
+
+.modalCard {
+    width: 90%;
+    max-width: 520px;
+    max-height: 85vh;
+
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    animation: fadeUp 0.25s ease;
+}
+
+/* HEADER */
+
+.modalTitle {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 26px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    opacity: 0.4;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+/* CONTENT */
+
+.content {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* SECTION */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* PLAN */
+
+.planCard {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #f7f7f5;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.planName {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.planMeta {
+    font-size: 13px;
+    opacity: 0.6;
+    margin-top: 2px;
+}
+
+/* LIST */
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.brand {
+    font-size: 11px;
+    text-transform: uppercase;
+    opacity: 0.45;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* BADGE */
+
+.badge {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 30px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* AUTO BLOCK */
+
+.autoBlock {
+    padding: 14px;
+    border-radius: 14px;
+    background: #f3f3f3;
+}
+
+.autoTitle {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.autoText {
+    font-size: 13px;
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+/* ACTIONS */
+
+.actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 10px;
+}
+
+.primaryBtn {
+    flex: 1;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    padding: 12px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+.secondaryBtn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    padding: 12px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

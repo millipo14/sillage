@@ -3,6 +3,7 @@ import s from './OrderModal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrder } from '../../features/orderSlice';
 import { createSubscription } from '../../features/subscriptionSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function OrderModal({ totalPrice, openModal, onClose, isSubscription = false }) {
     const [address, setAddress] = useState('')
@@ -11,7 +12,7 @@ export default function OrderModal({ totalPrice, openModal, onClose, isSubscript
     const { selectedSamples, activePlan } = useSelector(state => state.subscriptionPlans)
     const { user } = useSelector(state => state.auth)
     const status = useSelector(state => isSubscription ? state.subscriptionPlans.loading : state.order.status)
-
+    const navigate = useNavigate()
     if (!openModal) return null;
 
     const handleSubmit = () => {
@@ -34,7 +35,8 @@ export default function OrderModal({ totalPrice, openModal, onClose, isSubscript
                 .unwrap()
                 .then(() => {
                     alert('Подписка успешно оформлена!')
-                    onClose();
+                    onClose()
+                    navigate('/profile')
                 })
                 .catch((error) => {
                     const message = typeof error === 'string' ? error : (error?.error || "Произошла ошибка при оформлении")
@@ -65,6 +67,7 @@ export default function OrderModal({ totalPrice, openModal, onClose, isSubscript
                 .then(() => {
                     alert('Заказ оформлен!')
                     onClose()
+                    navigate('/profile')
                 })
                 .catch(e => alert(`Ошибка заказа: ${e.message}`))
         }

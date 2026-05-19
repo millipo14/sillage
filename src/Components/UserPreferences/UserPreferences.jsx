@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserPrefs } from '../../features/preferenceSlice'
 import s from './UserPreferences.module.scss'
+import { useNavigate } from 'react-router-dom'
+import UserPreferencesModal from './UserPreferencesModal/UserPreferencesModal'
 
 export default function UserPreferences() {
     const { userPrefs, status } = useSelector(state => state.preferences)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
         dispatch(fetchUserPrefs())
@@ -20,35 +24,33 @@ export default function UserPreferences() {
     );
 
     if (!hasPrefs) {
-        return <div className={s["no-prefs"]}>Предпочтения еще не настроены</div>
+        return (
+            <section className={s["empty-wrapper"]}>
+
+                <button
+                    className={s["quiz-button"]}
+                    onClick={() => navigate('/quiz')}
+                >
+                    Настроить предпочтения
+                </button>
+            </section>
+        )
     }
 
     return (
-        <div className={s["preferences-content"]}>
-            {userPrefs.category_preferences?.length > 0 && (
-                <div className={s["pref-group"]}>
-                    <span className={s["pref-label"]}>Любимые категории:</span>
-                    <div className={s["pref-list"]}>
-                        {userPrefs.category_preferences.map(pref => (
-                            <span key={pref.id} className={s["badge"]}>
-                                {pref.category_name}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            )}
-            {userPrefs.note_preferences?.length > 0 && (
-                <div className={s["pref-group"]}>
-                    <span className={s["pref-label"]}>Любимые ноты:</span>
-                    <div className={s["pref-list"]}>
-                        {userPrefs.note_preferences.map(item => (
-                            <span key={item.note_id} className={`${s["badge"]} ${s["badge--note"]}`}>
-                                {item.note?.note_name}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            )}
-        </div>
+        <section>
+            <button
+                className={s["quiz-button"]}
+                onClick={() => setOpenModal(true)}
+            >
+                Посмотреть предпочтения
+            </button>
+            <UserPreferencesModal
+                openModal={openModal}
+                onClose={() => setOpenModal(false)}
+                userPrefs={userPrefs}
+            />
+        </section>
+
     )
 }

@@ -8,6 +8,7 @@ import Cart from '../../assets/svg/cart.svg?react'
 import Exit from '../../assets/svg/exit.svg?react'
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../features/authSlice"
+import { clearCart } from "../../features/cartSlice"
 
 export const Header = () => {
 
@@ -19,6 +20,7 @@ export const Header = () => {
 
     const handleLogout = () => {
         dispatch(logout())
+        dispatch(clearCart())
         navigate('/login')
     }
 

@@ -1,9 +1,14 @@
+import { Outlet } from "react-router-dom"
+import { AdminHeader } from "./AdminHeader/AdminHeader"
 
 
 export const AdminPage = () => {
-    
+
 
     return (
-        <h1>AdminPage</h1>
+        <section>
+            <AdminHeader />
+            <Outlet />
+        </section>
     )
 }

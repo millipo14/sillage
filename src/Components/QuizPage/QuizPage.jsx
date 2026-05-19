@@ -98,35 +98,6 @@ export const QuizPage = () => {
                         {currentQuestion.question}
                     </h1>
 
-                    {/* <div className={cn(s.options)}>
-
-                        {
-                            currentQuestion.options.map(option => (
-
-                                <div
-                                    key={option.value}
-                                    className={cn(s.optionCard, {
-                                        [s.active]: currentQuestion.type === 'single'
-                                            ? answers[currentQuestion.id] === option.value
-                                            : answers[currentQuestion.id].includes(option.value)
-                                    })}
-                                    onClick={() => handleSelect(option.value)}
-                                >
-                                    <div className={s.cardContent}>
-                                        <span className={s.optTitle}>
-                                            {option.label}
-                                        </span>
-
-                                        <span className={s.optDesc}>
-
-                                        </span>
-
-                                    </div>
-                                </div>
-                            ))
-                        }
-
-                    </div> */}
                     <div className={cn(s.options, {
                         [s.cards]: currentQuestion.id === 'gender',
                         [s.tags]: currentQuestion.id === 'categories' || currentQuestion.id === 'notes'

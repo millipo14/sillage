@@ -77,11 +77,10 @@
         gap: 10px;
         justify-content: flex-start;
 
-        max-height: 260px; // 🔥 ограничиваем
+        max-height: 260px; 
         overflow-y: auto;
         padding-right: 6px;
 
-        /* красивый скролл */
         &::-webkit-scrollbar {
             width: 6px;
         }

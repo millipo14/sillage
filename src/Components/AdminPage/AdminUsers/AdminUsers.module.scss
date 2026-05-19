@@ -1,0 +1,132 @@
+.admin {
+    margin-top: 64px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-size: 44px;
+    font-weight: 600;
+}
+
+.count {
+    opacity: 0.5;
+    font-size: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 24px;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 230px;
+
+}
+
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    gap: 4px;
+
+    span {
+        font-size: 14px;
+        opacity: 0.6;
+    }
+}
+
+.status {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+}
+
+.active {
+    background: #27ae60;
+}
+
+.cancelled {
+    background: #111;
+}
+
+.stats {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.stat {
+    flex: 1;
+    background: #f7f7f7;
+    border-radius: 16px;
+    padding: 14px;
+}
+
+.statLabel {
+    display: block;
+    font-size: 13px;
+    opacity: 0.5;
+    margin-bottom: 8px;
+}
+
+.statValue {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.button {
+
+    margin-top: 15px;
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #111;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

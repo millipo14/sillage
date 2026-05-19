@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ORDERS } from "../const";
+import { ORDERS, ORDERS_ID } from "../const";
 
 export const fetchOrder = createAsyncThunk(
     'order/fetchOrder',
@@ -18,7 +18,7 @@ export const fetchOrder = createAsyncThunk(
 
 export const fetchOrderUser = createAsyncThunk(
     'order/fetchOrderUser',
-    async (order) => {
+    async () => {
         const response = await fetch(ORDERS,
             {
                 method: 'GET',
@@ -29,6 +29,54 @@ export const fetchOrderUser = createAsyncThunk(
         )
         const data = await response.json()
         return data.orders
+    }
+)
+
+export const updateOrderStatus = createAsyncThunk(
+    'order/updateOrderStatus',
+    async ({ orderId, status, customer_id }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`${ORDERS}/${orderId}/status`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ status })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to update status');
+            }
+
+            return await response.json()
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
+export const deleteOrder = createAsyncThunk(
+    'order/deleteOrder',
+    async (orderId, { rejectWithValue }) => {
+        try {
+            const response = await fetch(ORDERS_ID(orderId), {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Ошибка удаления');
+            }
+
+            return orderId;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
     }
 )
 
@@ -57,6 +105,18 @@ const orderSlice = createSlice({
             .addCase(fetchOrderUser.fulfilled, (state, action) => {
                 state.status = 'success';
                 state.userOrders = action.payload;
+            })
+            .addCase(updateOrderStatus.fulfilled, (state, action) => {
+                const updatedOrder = action.payload.order
+                const index = state.userOrders.findIndex(o => o.order_id == updatedOrder.order_id)
+                if (index !== -1) {
+                    state.userOrders[index].status =updatedOrder.status
+                }
+            })
+            .addCase(deleteOrder.fulfilled, (state, action) => {
+                state.userOrders = state.userOrders.filter(
+                    order => order.order_id !== action.payload
+                )
             })
     }
 })

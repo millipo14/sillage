@@ -16,6 +16,7 @@ export const PERFUMES_FILTER = `${API_URL}/perfumes/filters`;
 export const SUBSCRIPTION_PLANS = `${API_URL}/subscriptions/plans`;
 export const SUBSCRIPTION_URL = `${API_URL}/subscriptions`;
 export const SUBSCRIPTION_RECOMMENDED = `${API_URL}/subscriptions/recommended`;
+export const SUBSCRIPTION_ACTIVE = `${API_URL}/subscriptions/active`;
 
 export const SAMPLES = `${API_URL}/samples`;
 export const SAMPLES_AVAILABLE = `${API_URL}/samples/available`;
@@ -31,3 +32,11 @@ export const RECOMMENDATIONS = `${API_URL}/recommendations`;
 
 export const ORDERS = `${API_URL}/orders`;
 export const ORDERS_ID = (id) => `${API_URL}/orders/${id}`;
+
+export const ADMIN_USERS = `${API_URL}/users`
+export const ADMIN_SUBSCRIPTIONS = `${API_URL}/subscriptions/admin/all`
+export const ADMIN_ANALYTICS = `${API_URL}/admin/analytics`;
+export const ADMIN_DASHBOARD = `${ADMIN_ANALYTICS}/stats`
+export const ADMIN_REVENUE = `${ADMIN_ANALYTICS}/charts`
+export const ADMIN_GENDERS = `${ADMIN_ANALYTICS}/genders`
+export const ADMIN_HITS_PERFUMES = `${ADMIN_ANALYTICS}/top-perfumes`

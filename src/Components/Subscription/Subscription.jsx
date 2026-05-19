@@ -26,6 +26,10 @@ export const Subscription = () => {
             <div className={s['subscription-description']}>Каждый месяц получайте набор пробников, чтобы найти свой <br /> идеальный
                 аромат без риска покупки полного флакона
             </div>
+            <div className={s['subscription-descriptionQuiz']}>
+                Заполните
+                <Link to={'/quiz'} className={s.quizLink}>  анкету</Link>, чтобы система подобрала ароматы специально для Вас!
+            </div>
             <div className={s['subscription-tarifs']}>
                 {subscriptionPlans?.map((plan, index) =>
                 (

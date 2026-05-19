@@ -3,11 +3,15 @@ import { fetchOrder } from "./orderSlice";
 
 
 const cartItems = JSON.parse(localStorage.getItem('cart') || '[]')
+const getCartKey = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    return user ? `cart_${user.customer_id}` : 'cart_guest'
+}
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        cartItems,
+        cartItems: JSON.parse(localStorage.getItem(getCartKey()) || '[]'),
         countItems: cartItems.length,
     },
     reducers: {
@@ -21,7 +25,7 @@ const cartSlice = createSlice({
             } else {
                 state.cartItems.push({ id, name, brand, volume, count, image_url })
             }
-            localStorage.setItem('cart', JSON.stringify(state.cartItems))
+            localStorage.setItem(getCartKey(), JSON.stringify(state.cartItems))
             state.countItems = state.cartItems.length;
         },
 
@@ -31,31 +35,35 @@ const cartSlice = createSlice({
                 item => !(item.id === id && item.volume.volume_ml === volume.volume_ml)
             )
 
-            localStorage.setItem('cart', JSON.stringify(state.cartItems))
+            localStorage.setItem(getCartKey(), JSON.stringify(state.cartItems))
             state.countItems = state.cartItems.length
         },
         incrementItem(state, action) {
             const { id, volume } = action.payload
             const item = state.cartItems.find(item => item.id === id && item.volume.volume_ml === volume.volume_ml)
             if (item) item.count += 1
-            localStorage.setItem('cart', JSON.stringify(state.cartItems))
+            localStorage.setItem(getCartKey(), JSON.stringify(state.cartItems))
         },
 
         decrementItem(state, action) {
             const { id, volume } = action.payload
             const item = state.cartItems.find(item => item.id === id && item.volume.volume_ml === volume.volume_ml)
             if (item && item.count > 1) item.count -= 1
-            localStorage.setItem('cart', JSON.stringify(state.cartItems))
+            localStorage.setItem(getCartKey(), JSON.stringify(state.cartItems))
         },
+        clearCart(state) {
+            state.cartItems = []
+            state.countItems = 0
+        }
     },
     extraReducers: builder => {
         builder.addCase(fetchOrder.fulfilled, (state) => {
             state.cartItems = []
             state.countItems = 0
-            localStorage.removeItem('cart')
+            localStorage.removeItem(getCartKey())
         })
     }
 })
 
-export const { addToCart, removeFromCart, incrementItem, decrementItem } = cartSlice.actions
+export const { addToCart, removeFromCart, incrementItem, decrementItem , clearCart} = cartSlice.actions
 export default cartSlice.reducer

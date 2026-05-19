@@ -1,5 +1,6 @@
 .order {
     margin-top: 64px;
+    margin-bottom: 100px;
 
     &-title {
         margin-bottom: 28px;
@@ -45,6 +46,27 @@
     }
 }
 
+.order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0;
+    animation: slideDown 0.3s ease-out;
+    margin-top: 10px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .total {
 
     &-amount {
@@ -72,8 +94,8 @@
     }
 
     .go-shopping {
-        background: #8056DC; 
-        color: white;
+        background: #8056DC;
+        color: $second;
         border: none;
         padding: 12px 24px;
         border-radius: 8px;
@@ -81,7 +103,8 @@
         transition: background 0.3s;
 
         &:hover {
-            background: darken(#8056DC, 10%);
+            opacity: 50%;
+            transition: all 0.3s ease-in;
         }
     }
 }

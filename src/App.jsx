@@ -17,10 +17,18 @@ import { Recommendations } from './Components/Recommendations/Recommendations'
 import Profile from './Components/Profile/Profile'
 import Reviews from './Components/Reviews/Reviews'
 import SelectionSample from './Components/SelectionSample/SelectionSample'
+import Loader from './Components/UI/Loader/Loader'
+import AdminAnalytics from './Components/AdminPage/AdminAnalytics/AdminAnalytics'
+import AdminUsers from './Components/AdminPage/AdminUsers/AdminUsers'
+import AdminSubscriptions from './Components/AdminPage/AdminSubscriptions/AdminSubscriptions'
 
 
 const ProtectedRoute = ({ children }) => {
-  const { token } = useSelector(state => state.auth)
+  const { token, user } = useSelector(state => state.auth)
+
+  if (token && !user) {
+    return <Loader />
+  }
   if (!token) {
     return <Navigate to='/login' replace />
   }
@@ -35,6 +43,16 @@ const AdminRoute = ({ children }) => {
   }
   return children;
 };
+
+const HomeRedirect = () => {
+  const { user } = useSelector(state => state.auth)
+  if (user?.role === 'admin') {
+    return <Navigate to={'/admin'} replace />
+  }
+  return <MainPage />
+}
+
+
 const router = createBrowserRouter(
   createRoutesFromElements(
 
@@ -49,7 +67,7 @@ const router = createBrowserRouter(
           <Root />
         </ProtectedRoute>
       }>
-        <Route index element={<MainPage />} />
+        <Route index element={<HomeRedirect />} />
         <Route path='/subscription' element={<Subscription />} />
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/perfume/:id' element={<PerfumePage />} />
@@ -70,7 +88,14 @@ const router = createBrowserRouter(
               <AdminPage />
             </AdminRoute>
           </ProtectedRoute>
-        } />
+        }>
+
+        <Route index element={<AdminAnalytics />} />
+        <Route path='analysis' element={<AdminAnalytics />} />
+        <Route path='users' element={<AdminUsers />} />
+        <Route path='subscriptions_users' element={<AdminSubscriptions />} />
+      </Route>
+
 
       <Route path='*' element={<Navigate to='/login' replace />} />
     </>

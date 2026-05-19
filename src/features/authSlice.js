@@ -27,12 +27,15 @@ export const fetchUser = createAsyncThunk(
     }
 )
 
+
+const userFromStorage = JSON.parse(localStorage.getItem('user'))
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
         token: localStorage.getItem('token'),
-        user: JSON.parse(localStorage.getItem('user')) || null,
-        isAdmin: false,
+        user: userFromStorage || null,
+        isAdmin: userFromStorage?.role === 'admin',
         status: 'idle',
         error: null,
     },
@@ -43,6 +46,7 @@ const authSlice = createSlice({
             state.status = 'idle';
             state.error = null;
             localStorage.removeItem('token')
+            localStorage.removeItem('user')
         }
     },
     extraReducers: builder => {
@@ -56,13 +60,15 @@ const authSlice = createSlice({
                 state.user = action.payload.user;
                 state.isAdmin = action.payload.user?.role === 'admin';
                 localStorage.setItem('token', action.payload.token)
+                localStorage.setItem('user', JSON.stringify(action.payload.user))
             })
             .addCase(fetchAuth.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.error.message;
+                state.status = 'failed'
+                state.error = action.error.message
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.user = action.payload
+                state.isAdmin = action.payload?.role === 'admin';
                 localStorage.setItem('user', JSON.stringify(action.payload))
             })
     }

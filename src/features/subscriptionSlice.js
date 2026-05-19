@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { SUBSCRIPTION_PLANS, SUBSCRIPTION_URL } from "../const";
+import { SUBSCRIPTION_ACTIVE, SUBSCRIPTION_PLANS, SUBSCRIPTION_URL } from "../const";
 
 
 export const fetchSubscription = createAsyncThunk(
@@ -31,7 +31,43 @@ export const createSubscription = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
+
+export const fetchActiveSubscription = createAsyncThunk(
+    'subscriptionPlans/fetchActiveSubscription',
+    async () => {
+        const response = await fetch(SUBSCRIPTION_ACTIVE, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return await response.json();
+    }
+)
+
+export const cancelSubscription = createAsyncThunk(
+    'subscriptionPlans/cancelSubscription',
+    async (subscriptionId, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`${SUBSCRIPTION_URL}/${subscriptionId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ status: 'cancelled' })
+            });
+
+            const data = await response.json()
+            if (!response.ok) {
+                return rejectWithValue(data.error || 'Ошибка при отмене подписки');
+            }
+            return data
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
 
 const subscriptionSlice = createSlice({
     name: 'subscriptionPlans',
@@ -42,6 +78,7 @@ const subscriptionSlice = createSlice({
         selectedSamples: JSON.parse(localStorage.getItem('selectedSamples') || '[]'),
         activePlan: JSON.parse(localStorage.getItem('activePlan') || 'null'),
         loading: false,
+        activeSubscription: null,
     },
     reducers: {
         setActivePlan(state, action) {
@@ -102,9 +139,19 @@ const subscriptionSlice = createSlice({
                 localStorage.setItem('selectedSamples', JSON.stringify([]));
             })
             .addCase(createSubscription.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
+            })
+            .addCase(fetchActiveSubscription.fulfilled, (state, action) => {
+                state.loading = false
+                state.activeSubscription = action.payload
+            })
+            .addCase(cancelSubscription.fulfilled, (state) => {
                 state.loading = false;
-                state.error = action.payload;
-            });
+                state.activeSubscription = null; 
+                state.activePlan = null;
+                localStorage.removeItem('activePlan');
+            })
     }
 })
 export const { addSampleSubscription, removeSampleSubscription, clearSampleSubscription, setActivePlan } = subscriptionSlice.actions

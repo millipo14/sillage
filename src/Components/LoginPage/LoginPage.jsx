@@ -18,7 +18,6 @@ export const LoginPage = () => {
         // console.log('Submitting:', email, password);
         try {
             const result = await dispatch(fetchAuth({ email, password })).unwrap();
-            // console.log('Success:', result);
         } catch (err) {
             console.log('Error:', err);
         }
@@ -60,7 +59,7 @@ export const LoginPage = () => {
                             type="password"
                             className={s['password']}
                             required />
-                        <NavLink to="#" className={s['link-password']}>Забыли пароль?</NavLink>
+                        {/* <NavLink to="#" className={s['link-password']}>Забыли пароль?</NavLink> */}
 
                         <button className={s['auth-btn_input']} type="submit" disabled={status === 'loading'}>
                             {status === 'loading' ? 'Загрузка...' : 'Войти'}

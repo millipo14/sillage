@@ -1,0 +1,27 @@
+.revenueCard {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 17px;
+    padding: 44px 36px;
+    width: 930px;
+    height: 581px;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06);
+    background: #fff;
+}
+
+.header {
+    margin-bottom: 32px;
+
+    h2 {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 120%;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 113%;
+        opacity: 0.6;
+    }
+}

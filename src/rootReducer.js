@@ -1,14 +1,16 @@
-import { combineReducers } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit"
 import authReducer from './features/authSlice'
 import subscriptionReducer from './features/subscriptionSlice'
 import perfumeReducer from './features/perfumeSlice'
 import cartReducer from './features/cartSlice'
-import brandsReducer from "./features/brandsSlice";
-import filterReducer from "./features/filterSlice";
+import brandsReducer from "./features/brandsSlice"
+import filterReducer from "./features/filterSlice"
 import preferencesReducer from "./features/preferenceSlice"
 import orderReducer from './features/orderSlice'
 import reviewReducer from './features/reviewSlice'
-import recommendationReducer from "./features/recommendationSlice";
+import recommendationReducer from "./features/recommendationSlice"
+import adminReducer from './features/adminSlice'
+import adminAnalyticsReducer from './features/adminAnalyticsSlice'
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
     order: orderReducer,
     reviews: reviewReducer,
     recommendations: recommendationReducer,
+    admin: adminReducer,
+    adminAnalytics: adminAnalyticsReducer
 })
 
 export default rootReducer
