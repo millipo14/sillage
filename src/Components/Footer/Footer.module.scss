@@ -1,88 +1,198 @@
- .footer {
-     background-color: black;
-     color: $second;
+.footer {
+    background-color: black;
+    color: $second;
 
-     &-container {
-         display: grid;
-         grid-template-columns: repeat(4, 1fr);
-         grid-template-areas:
-             'logo . . .'
-             'contacts about clients other';
-         padding-top: 83px;
-     }
+    &-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            'logo . . .'
+            'contacts about clients other';
 
-     &-logo {
-         margin-bottom: 84px;
-     }
+        column-gap: 40px;
+        padding-top: 83px;
 
-     &-contacts {
-         grid-area: contacts;
+        @include laptop {
+            column-gap: 24px;
+            padding-top: 64px;
+        }
 
-         &_list {
-             padding-top: 22px;
-             display: flex;
-             flex-direction: row;
-             gap: 74px;
-         }
+        @include tablet {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-areas:
+                'logo logo'
+                'contacts about'
+                'clients other';
 
-         &_description {
-             font-weight: 500;
-             font-size: 20px;
-             line-height: 120%;
-             opacity: 0.7;
-         }
-     }
+            row-gap: 48px;
+            column-gap: 32px;
+            padding-top: 48px;
+        }
 
-     &-title {
-         font-size: 32px;
-         font-weight: 600;
-         line-height: 120%;
-     }
+        @include mobile {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                'logo'
+                'contacts'
+                'about'
+                'clients'
+                'other';
 
-     &-description {
-         margin-top: 26px;
-         margin-bottom: 191px;
+            row-gap: 36px;
+            padding-top: 40px;
+        }
+    }
 
-         p {
-             margin-bottom: 20px;
+    &-logo {
+        margin-bottom: 84px;
 
-             &:last-child {
-                 margin-bottom: 0;
-             }
+        @include laptop {
+            margin-bottom: 56px;
+        }
 
-             a {
-                 font-weight: 500;
-                 font-size: 20px;
-                 line-height: 120%;
-                 opacity: 0.7;
+        @include tablet {
+            margin-bottom: 0;
+        }
+    }
 
-                 &:hover {
-                     opacity: 1;
-                 }
-             }
-         }
-     }
+    &-contacts {
+        grid-area: contacts;
 
-     &-link {
-         display: flex;
-         flex-direction: row;
-         gap: 8px;
-         align-items: center;
+        &_list {
+            padding-top: 22px;
+            display: flex;
+            flex-direction: row;
+            gap: 74px;
 
-         span {
-             opacity: 0.7;
-         }
-     }
+            @include laptop {
+                gap: 40px;
+            }
 
-     &-about {
-         grid-area: about;
-     }
+            @include mobile {
+                gap: 24px;
+                padding-top: 16px;
+            }
+        }
 
-     &-clients {
-         grid-area: clients;
-     }
+        &_description {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 120%;
+            opacity: 0.7;
 
-     &-other {
-         grid-area: other;
-     }
- }
+            @include laptop {
+                font-size: 18px;
+            }
+
+            @include mobile {
+                font-size: 16px;
+            }
+        }
+
+        &_icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+    }
+
+    &-title {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 120%;
+
+        @include laptop {
+            font-size: 28px;
+        }
+
+        @include tablet {
+            font-size: 24px;
+        }
+
+        @include mobile {
+            font-size: 20px;
+        }
+    }
+
+    &-description {
+        margin-top: 26px;
+        margin-bottom: 191px;
+
+        @include laptop {
+            margin-bottom: 120px;
+        }
+
+        @include tablet {
+            margin-bottom: 0;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+
+            @include mobile {
+                margin-bottom: 14px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            a {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 120%;
+                opacity: 0.7;
+                transition: opacity 0.2s ease;
+
+                @include laptop {
+                    font-size: 18px;
+                }
+
+                @include mobile {
+                    font-size: 16px;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &-link {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+
+        span {
+            font-size: 18px;
+
+            @include mobile {
+                font-size: 16px;
+            }
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &-about {
+        grid-area: about;
+    }
+
+    &-clients {
+        grid-area: clients;
+    }
+
+    &-other {
+        grid-area: other;
+    }
+}

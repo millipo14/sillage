@@ -2,10 +2,30 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include mobile {
+        align-items: flex-start;
+        position: relative;
+    }
 
     &-delete {
         margin-left: 8px;
         cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+
+        @include mobile {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-left: 0;
+        }
     }
 
     &-product {
@@ -15,22 +35,64 @@
         width: 100%;
         justify-content: space-between;
         padding-left: 44px;
+        box-sizing: border-box;
+        gap: 20px;
+
+        @media (max-width: 1650px) {
+            padding-left: 20px;
+        }
+
+        @include laptop {
+            padding-left: 24px;
+        }
+
+        @include tablet {
+            gap: 24px;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 0;
+            gap: 20px;
+        }
 
         &_info {
             display: flex;
             gap: 33px;
             align-items: center;
+            flex-shrink: 1;
+            min-width: 0;
+
+            @include laptop {
+                gap: 20px;
+            }
+
+            @include mobile {
+                gap: 16px;
+                width: 100%;
+                padding-right: 32px;
+            }
         }
 
         &_meta {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            min-width: 0;
+
+            @include mobile {
+                gap: 6px;
+            }
         }
 
         &_link {
+            text-decoration: none;
+            color: inherit;
+            min-width: 0;
+
             &:hover {
-                color: #656565
+                color: #656565;
             }
         }
     }
@@ -39,20 +101,53 @@
         width: 130px;
         height: 129px;
         object-fit: contain;
+        flex-shrink: 0;
+
+        @include laptop {
+            width: 100px;
+            height: 100px;
+        }
+
+        @include mobile {
+            width: 80px;
+            height: 80px;
+        }
     }
 
     &-title {
         font-weight: 600;
         font-size: 28px;
         line-height: 120%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
+        @include laptop {
+            font-size: 22px;
+        }
 
+        @include mobile {
+            font-size: 18px;
+            white-space: normal;
+        }
     }
 
     &-titleBrand {
         font-weight: 600;
         font-size: 23px;
         line-height: 120%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include laptop {
+            font-size: 18px;
+        }
+
+        @include mobile {
+            font-size: 15px;
+            white-space: normal;
+        }
     }
 
     &-volume {
@@ -60,12 +155,34 @@
         font-size: 24px;
         line-height: 120%;
         opacity: 0.5;
+
+        @include laptop {
+            font-size: 18px;
+        }
+
+        @include mobile {
+            font-size: 14px;
+        }
     }
 
     &-actions {
         display: flex;
         gap: 16px;
         align-items: center;
+        flex-shrink: 0;
+
+        @media (max-width: 1650px) {
+            gap: 12px;
+        }
+
+        @include laptop {
+            gap: 12px;
+        }
+
+        @include mobile {
+            width: 100%;
+            justify-content: flex-start;
+        }
     }
 
     &-btn {
@@ -82,36 +199,87 @@
         border-radius: 36px;
         cursor: pointer;
         background: none;
+        flex-shrink: 0;
 
         &:hover {
             background: rgba(0, 0, 0, 0.02);
         }
+
+        @include mobile {
+            width: 36px;
+            height: 36px;
+            font-size: 24px;
+        }
     }
 
     &-count {
-        width: 85px;
+        width: auto;
+        min-width: 40px;
         font-weight: 500;
         font-size: 32px;
         line-height: 120%;
         text-align: center;
         color: #000;
-        padding: 0 23px;
-        min-width: 60px;
+        padding: 0 10px;
+
+        @include laptop {
+            font-size: 24px;
+            padding: 0 5px;
+        }
+
+        @include mobile {
+            font-size: 20px;
+            padding: 0;
+        }
     }
 
     &-price {
-        width: 200px;
+        width: auto;
+        min-width: 140px;
         font-weight: 700;
         font-size: 32px;
         line-height: 120%;
-        padding-left: 49px;
+        padding-left: 20px;
         white-space: nowrap;
+        text-align: right;
+
+        @media (max-width: 1650px) {
+            min-width: auto;
+            padding-left: 10px;
+        }
+
+        @include laptop {
+            font-size: 24px;
+            padding-left: 20px;
+        }
+
+        @include tablet {
+            padding-left: 0;
+        }
+
+        @include mobile {
+            font-size: 22px;
+            margin-left:70px;
+        }
     }
 }
 
 .line-item {
     margin: 32px 0 32px 80px;
-    width: 977px;
+    width: 100%;
+    max-width: 977px;
     height: 1px;
     background: #d9d9d9;
+
+    @media (max-width: 1650px) {
+        margin-left: 0;
+    }
+
+    @include laptop {
+        margin-left: 0;
+    }
+
+    @include mobile {
+        margin: 20px 0;
+    }
 }

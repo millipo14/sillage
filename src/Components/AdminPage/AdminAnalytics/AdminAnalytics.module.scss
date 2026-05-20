@@ -7,6 +7,13 @@
     border-radius: 100px;
     padding: 4px 8px;
     background: rgba(118, 118, 128, 0.12);
+
+    @include mobile {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 4px;
+    }
 }
 
 .periodBtn {
@@ -14,21 +21,35 @@
     font-size: 14px;
     text-align: center;
     padding: 15px 38px;
-    transition: all 0.3s ease-out;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-out, font-weight 0.3s ease-out, box-shadow 0.3s ease-out;
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.06);
         border-radius: 100px;
+    }
+
+    @include tablet {
+        padding: 12px 28px;
+    }
+
+    @include mobile {
+        flex: 1;
+        padding: 10px 0;
+        font-size: 13px;
     }
 }
 
 .activeBtn {
     font-weight: 700;
     border-radius: 100px;
-    background-color: #fff;
+    background-color: #ffffff;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06);
 
     &:hover {
-        background-color: #fff;
+        background-color: #ffffff;
     }
 }

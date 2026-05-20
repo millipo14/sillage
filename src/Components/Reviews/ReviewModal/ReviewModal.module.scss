@@ -4,23 +4,23 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); // Чуть мягче фон
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    backdrop-filter: blur(4px); // Чуть больше блюра для акцента на модалке
+    backdrop-filter: blur(4px);
 }
 
 .modal {
     background: #fff;
     padding: 40px;
-    border-radius: 20px; // Более мягкие углы под стиль парфюмерии
+    border-radius: 20px;
     width: 90%;
     max-width: 450px;
     position: relative;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    animation: slideIn 0.3s ease-out; // Та самая анимация
+    animation: slideIn 0.3s ease-out;
 }
 
 .closeBtn {
@@ -35,7 +35,7 @@
     line-height: 1;
 
     &:hover {
-        color: #8056DC; // Твой акцентный цвет
+        color: #8056DC;
     }
 }
 
@@ -47,7 +47,6 @@
     color: #333;
 }
 
-// Стили для выбора звезд
 .ratingSelection {
     display: flex;
     justify-content: center;
@@ -68,17 +67,17 @@
 
             path {
                 fill: #8056DC;
-                opacity: 0.2; // Пустая звезда
+                opacity: 0.2;
                 transition: opacity 0.2s;
             }
         }
 
         &.active svg path {
-            opacity: 1; // Закрашенная звезда
+            opacity: 1; 
         }
 
         &:hover {
-            transform: scale(1.1); // Эффект при наведении
+            transform: scale(1.1);
         }
     }
 }
@@ -117,7 +116,7 @@
 .submitBtn {
     width: 100%;
     padding: 16px;
-    background: black; // Фиолетовый под стиль Sillage
+    background: black;
     color: #fff;
     border: none;
     border-radius: 12px;

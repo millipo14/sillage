@@ -1,25 +1,51 @@
 .pagination {
     margin: 0 auto;
     width: max-content;
+
     display: flex;
-    gap: 16px;
-    margin-bottom: 140px;
     align-items: center;
+    gap: 16px;
+
+    margin-bottom: 140px;
+
+    @include tablet {
+        gap: 12px;
+        margin-bottom: 100px;
+    }
+
+    @include mobile {
+        gap: 8px;
+        margin-bottom: 72px;
+    }
 }
 
 .list {
     display: flex;
+    align-items: center;
+
     gap: 8px;
+
     padding-top: 3px;
     padding-bottom: 6px;
 
-    @media (max-width: 768px) {
-        gap: 10px;
+    @include tablet {
+        gap: 6px;
     }
+
+    @include mobile {
+        gap: 4px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.item {
+    display: flex;
 }
 
 .link {
     position: relative;
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -33,11 +59,10 @@
 
     text-decoration: none;
     border-radius: 6px;
+
     transition: all 0.2s ease;
 
-
     &:hover {
-        padding: 2px;
         color: #000;
         background-color: rgba(114, 114, 114, 0.3);
     }
@@ -46,16 +71,49 @@
         font-size: 30px;
         color: black;
     }
+
+    @include tablet {
+        min-width: 24px;
+        height: 24px;
+        font-size: 22px;
+
+        &.active {
+            font-size: 26px;
+        }
+    }
+
+    @include mobile {
+        min-width: 22px;
+        height: 22px;
+        font-size: 18px;
+        border-radius: 4px;
+
+        &.active {
+            font-size: 22px;
+        }
+    }
+
+    @include small-mobile {
+        min-width: 20px;
+        height: 20px;
+        font-size: 16px;
+
+        &.active {
+            font-size: 18px;
+        }
+    }
 }
 
 .arrow {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+
     width: 28px;
     height: 28px;
+
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
 
     svg {
         width: 20px;
@@ -67,10 +125,39 @@
         border-radius: 50px;
     }
 
-    &:disabled {
+    &.disabled {
         pointer-events: none;
-        color: #ccc;
+        opacity: 0.35;
         cursor: default;
     }
 
+    @include tablet {
+        width: 24px;
+        height: 24px;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    @include mobile {
+        width: 22px;
+        height: 22px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    @include small-mobile {
+        width: 20px;
+        height: 20px;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
 }

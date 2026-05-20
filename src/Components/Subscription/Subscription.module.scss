@@ -2,12 +2,31 @@
     margin-top: 114px;
     margin-bottom: 66px;
 
+    @include tablet {
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+
+    @include mobile {
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+
     &-title {
         margin-bottom: 36px;
         font-weight: 500;
         font-size: 66px;
         line-height: 120%;
         text-align: center;
+
+        @include tablet {
+            font-size: 48px;
+        }
+
+        @include mobile {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
     }
 
     &-description {
@@ -15,6 +34,25 @@
         font-size: 18px;
         line-height: 170%;
         text-align: center;
+
+        @include mobile {
+            font-size: 15px;
+            line-height: 150%;
+        }
+    }
+
+    &-descriptionQuiz {
+        margin-top: 36px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 170%;
+        text-align: center;
+
+        @include mobile {
+            font-size: 15px;
+            line-height: 150%;
+            margin-top: 20px;
+        }
     }
 
     &-tarifs {
@@ -22,6 +60,21 @@
         justify-content: center;
         margin-top: 52px;
         gap: 40px;
+
+        @include laptop {
+            gap: 24px;
+        }
+
+        @include tablet {
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
     }
 
     &-tarif {
@@ -33,30 +86,47 @@
             border-radius: 17px;
             padding: 44px 36px;
             box-shadow: 0 0 57px 0 rgba(0, 0, 0, 0.05);
+
             width: 606px;
             height: 764px;
 
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+            &:hover {
+                border-color: rgba(0, 0, 0, 0.15);
+                box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.08);
+            }
+
+            @include laptop {
+                width: 520px;
+                height: 720px;
+            }
+
+            @include tablet {
+                width: 100%;
+                max-width: 520px;
+            }
+
+            @include mobile {
+                padding: 28px 20px;
+                height: auto;
+                min-height: 620px;
+            }
         }
 
         &_base {
             background-image: url('./background_base.jpg');
-            background-size: contain;
-            background-position: center bottom;
-            background-repeat: no-repeat;
         }
 
         &_premium {
             background-image: url('./background_premium.jpg');
-            background-size: contain;
-            background-position: center bottom;
-            background-repeat: no-repeat;
         }
 
         &_luxe {
             background-image: url('./background_luxe.jpg');
-            background-size: contain;
-            background-position: center bottom;
-            background-repeat: no-repeat;
         }
 
         &_name {
@@ -64,6 +134,11 @@
             font-size: 43px;
             line-height: 120%;
             margin-bottom: 44px;
+
+            @include mobile {
+                font-size: 28px;
+                margin-bottom: 24px;
+            }
         }
 
         &_info {
@@ -71,18 +146,25 @@
             flex-direction: column;
             gap: 24px;
             margin-bottom: 60px;
+
             font-weight: 500;
             font-size: 20px;
             line-height: 120%;
             opacity: 0.7;
+
+            @include mobile {
+                font-size: 15px;
+                gap: 14px;
+                margin-bottom: 30px;
+            }
         }
-
-
 
         &_fare {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         &_price {
@@ -90,11 +172,19 @@
             font-size: 32px;
             line-height: 120%;
 
+            @include mobile {
+                font-size: 22px;
+            }
+
             span {
                 font-weight: 600;
                 font-size: 24px;
                 line-height: 120%;
                 opacity: 0.5;
+
+                @include mobile {
+                    font-size: 16px;
+                }
             }
         }
 
@@ -104,28 +194,45 @@
             color: $second;
             border-radius: 34px;
             padding: 12.5px 30px;
-            background-color: #000;
-        }
+            background-color: #000000;
+            border: 2px solid #000000;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
 
+            &:hover {
+                background-color: transparent;
+                color: #000000;
+            }
+
+            @include mobile {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
     }
 }
 
-.subscription-descriptionQuiz {
-    margin-top: 36px;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 170%;
-    text-align: center;
-}
-
 .quizLink {
-    display: inline-flex; 
-    align-items: center; 
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
     padding: 5px 15px;
     margin-left: 5px;
     margin-right: 5px;
     font-size: 23px;
     border-radius: 30px;
-    background-color: rgba($color: #8056dc, $alpha: 0.4);
+    background-color: rgba(#8056dc, 0.3);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: rgba(#8056dc, 0.6);
+        color: #ffffff;
+    }
+
+    @include mobile {
+        font-size: 16px;
+        padding: 4px 10px;
+    }
 }

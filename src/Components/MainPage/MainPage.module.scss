@@ -4,12 +4,45 @@
     align-items: flex-end;
     margin-bottom: 72px;
     margin-top: 128px;
+    gap: 24px;
+
+    @include laptop {
+        margin-top: 96px;
+        margin-bottom: 56px;
+    }
+
+    @include tablet {
+        margin-top: 72px;
+        margin-bottom: 40px;
+    }
+
+    @include mobile {
+        margin-top: 56px;
+        margin-bottom: 28px;
+        gap: 16px;
+    }
 }
 
 .title {
     font-weight: 400;
     font-size: 80px;
     line-height: 120%;
+
+    @include laptop {
+        font-size: 64px;
+    }
+
+    @include tablet {
+        font-size: 48px;
+    }
+
+    @include mobile {
+        font-size: 36px;
+    }
+
+    @include small-mobile {
+        font-size: 28px;
+    }
 }
 
 .link {
@@ -18,4 +51,13 @@
     line-height: 150%;
     text-decoration: underline;
     color: #555;
+    white-space: nowrap;
+
+    @include tablet {
+        font-size: 16px;
+    }
+
+    @include mobile {
+        font-size: 14px;
+    }
 }

@@ -72,7 +72,6 @@ export const QuizPage = () => {
         if (step < quizData.length - 1) {
             setStep(prev => prev + 1)
         } else {
-            console.log('Отправляем ответы:', answers)
             dispatch(fetchQuiz(answers)).then(() => {
                 navigate('/recommendations')
             })

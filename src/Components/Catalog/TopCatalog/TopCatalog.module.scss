@@ -2,6 +2,10 @@
 
     &-container {
         margin-top: 28px;
+
+        @include mobile {
+            margin-top: 20px;
+        }
     }
 
     &-header {
@@ -9,22 +13,33 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 56px;
+
+        @include tablet {
+            margin-bottom: 40px;
+        }
+
+        @include mobile {
+            margin-bottom: 28px;
+        }
     }
 
     &-filters {
         display: flex;
         align-items: center;
         gap: 93px;
-    }
 
-    &-products {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        row-gap: 40px;
-        column-gap: 40px;
-    }
+        @include laptop {
+            gap: 48px;
+        }
 
-    &-img {}
+        @include tablet {
+            gap: 32px;
+        }
+
+        @include mobile {
+            gap: 20px;
+        }
+    }
 }
 
 .filter {
@@ -36,24 +51,25 @@
 
         font-weight: 600;
         font-size: 20px;
-        line-height: 130%;
-        letter-spacing: 0.02em;
-    }
 
-    &-icon {}
+        @include tablet {
+            font-size: 18px;
+        }
+
+        @include mobile {
+            font-size: 16px;
+        }
+    }
 }
 
 .sort {
+
     &-select {
         font-weight: 600;
         font-size: 20px;
-        line-height: 130%;
-        letter-spacing: 0.02em;
         color: $text;
 
         appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         border: none;
         outline: none;
 
@@ -64,22 +80,30 @@
         background-repeat: no-repeat;
         background-position: right center;
 
-
-        option {
-            background-color: #FFF0F5;
-            opacity: 0.2;
-            color: $text;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 130%;
-            letter-spacing: 0.02em;
-            border: none;
-            outline: none;
+        @include tablet {
+            font-size: 18px;
         }
 
+        @include mobile {
+            font-size: 16px;
+        }
     }
 }
 
+.count {
 
+    &-products {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 130%;
+        letter-spacing: 0.03em;
 
+        @include tablet {
+            font-size: 18px;
+        }
 
+        @include mobile {
+            font-size: 16px;
+        }
+    }
+}

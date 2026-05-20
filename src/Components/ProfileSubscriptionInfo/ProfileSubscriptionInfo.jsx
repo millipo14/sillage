@@ -10,8 +10,7 @@ export default function ProfileSubscriptionInfo() {
     const navigate = useNavigate()
     const { activeSubscription } = useSelector(state => state.subscriptionPlans)
     const [openModal, setOpenModal] = useState(false)
-    console.log(activeSubscription)
-
+    
     useEffect(() => {
         dispatch(fetchActiveSubscription())
     }, [])

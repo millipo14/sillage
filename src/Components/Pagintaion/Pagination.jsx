@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom"; // используем Link вместо NavLink
+import { Link, useLocation } from "react-router-dom";
 import s from './Pagination.module.scss'
 import BtnRight from '../../assets/svg/arrow-right.svg?react'
 import BtnLeft from '../../assets/svg/arrow-left.svg?react'

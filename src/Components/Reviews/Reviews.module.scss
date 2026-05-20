@@ -1,10 +1,24 @@
 .ratingAndReviews {
     margin-bottom: 120px;
+
+    @include tablet {
+        margin-bottom: 80px;
+    }
+
+    @include mobile {
+        margin-bottom: 60px;
+    }
 }
 
 .rating {
     display: flex;
     margin-bottom: 56px;
+
+    @include tablet {
+        flex-direction: column;
+        gap: 32px;
+        margin-bottom: 40px;
+    }
 
     &_stars {
         display: flex;
@@ -16,6 +30,10 @@
     &_star {
         svg {
             width: 43px !important;
+
+            @include mobile {
+                width: 32px !important;
+            }
         }
     }
 
@@ -24,11 +42,31 @@
         font-weight: 700;
         font-size: 40px;
         line-height: 120%;
+
+        @include laptop {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        @include tablet {
+            font-size: 28px;
+            margin-bottom: 32px;
+        }
+
+        @include mobile {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
     }
 
     &-summary {
         display: flex;
         flex-direction: column;
+
+        @include tablet {
+            align-items: center;
+            text-align: center;
+        }
     }
 
     &-value {
@@ -36,14 +74,21 @@
         font-weight: 800;
         font-size: 36px;
         line-height: 113%;
+
+        @include mobile {
+            font-size: 32px;
+        }
     }
 
     &-reviews {
-
         &_count {
             font-weight: 500;
             font-size: 24px;
             line-height: 113%;
+
+            @include mobile {
+                font-size: 18px;
+            }
         }
     }
 
@@ -51,6 +96,11 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+
+        @include tablet {
+            align-items: center;
+            width: 100%;
+        }
     }
 
     &-details {
@@ -59,6 +109,11 @@
         gap: 7px;
         align-items: center;
         justify-content: center;
+
+        @include mobile {
+            width: 100%;
+            max-width: 320px;
+        }
     }
 
     &-label {
@@ -66,6 +121,10 @@
         font-weight: 500;
         font-size: 20px;
         line-height: 113%;
+
+        @include mobile {
+            font-size: 16px;
+        }
     }
 
     &-bar {
@@ -74,13 +133,17 @@
         height: 8px;
         background: #d9d9d9;
 
+        @include mobile {
+            flex-grow: 1;
+            width: auto;
+        }
+
         &_fill {
             height: 100%;
             border-radius: 39px;
             background-color: #8056DC;
             transition: width 0.3s ease-in-out;
         }
-
     }
 
     &-percent {
@@ -91,6 +154,11 @@
         line-height: 113%;
         text-align: right;
         opacity: 0.66;
+
+        @include mobile {
+            font-size: 15px;
+            width: 40px;
+        }
     }
 
     &-star {
@@ -98,22 +166,33 @@
 
         svg {
             width: 25px !important;
-        }
 
+            @include mobile {
+                width: 20px !important;
+            }
+        }
     }
 }
 
 .separating {
-
     &-line {
         width: 1px;
         background: #ccc;
         margin: 0 76px;
+
+        @include laptop {
+            margin: 0 40px;
+        }
+
+        @include tablet {
+            width: 100%;
+            height: 1px;
+            margin: 8px 0;
+        }
     }
 }
 
 .btn {
-
     &-review {
         margin-top: 56px;
         padding: 14px 105.5px;
@@ -121,5 +200,20 @@
         font-weight: 600;
         font-size: 22px;
         color: $second;
+        border: none;
+        cursor: pointer;
+
+        @include tablet {
+            display: block;
+            margin: 40px auto 0 auto;
+            padding: 14px 64px;
+        }
+
+        @include mobile {
+            margin-top: 32px;
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 18px;
+        }
     }
 }

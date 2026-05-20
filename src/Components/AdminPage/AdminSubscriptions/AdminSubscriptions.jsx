@@ -10,12 +10,6 @@ const statusMap = {
     paused: { text: 'Приостановлена', color: '#f39c12' }
 };
 
-const paymentMap = {
-    paid: { text: 'Оплачено', color: '#27ae60' },
-    pending: { text: 'Ожидает оплаты', color: '#f39c12' },
-    failed: { text: 'Ошибка оплаты', color: '#e74c3c' }
-};
-
 export default function AdminSubscriptions() {
     const dispatch = useDispatch()
     const { subsriptionsUsers } = useSelector(state => state.admin)
@@ -50,7 +44,6 @@ export default function AdminSubscriptions() {
             <div className={s.list}>
                 {filteredSubs.map(subscription => {
                     const statusInfo = statusMap[subscription.status] || { text: subscription.status, color: '#777' };
-                    const paymentInfo = paymentMap[subscription.payment_status] || { text: subscription.payment_status, color: '#777' };
                     const isOpen = openedId === subscription.subscription_id;
 
                     return (
@@ -69,7 +62,6 @@ export default function AdminSubscriptions() {
 
                                 <div className={s.right}>
                                     <span className={s.status} style={{ color: statusInfo.color }}>{statusInfo.text}</span>
-                                    <span className={s.payment} style={{ color: paymentInfo.color }}>{paymentInfo.text}</span>
                                     <button className={s.open} onClick={() => setOpenedId(isOpen ? null : subscription.subscription_id)}>
                                         {isOpen ? 'Скрыть' : 'Открыть'}
                                     </button>

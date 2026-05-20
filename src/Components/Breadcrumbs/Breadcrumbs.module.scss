@@ -7,12 +7,7 @@
         gap: 4px;
         padding: 0;
         margin-top: 76px;
-    }
-
-    &-item:not(:last-child)::after {
-        content: "/";
-        margin-left: 4px;
-        color: #000;
+        flex-wrap: wrap;
     }
 
     &-item {
@@ -21,6 +16,13 @@
         line-height: 149%;
         letter-spacing: 0.01em;
         text-align: center;
+        white-space: nowrap;
+    }
+
+    &-item:not(:last-child)::after {
+        content: "/";
+        margin-left: 4px;
+        color: #000;
     }
 
     &-link {
@@ -30,5 +32,39 @@
 
     &-current {
         color: #000;
+    }
+}
+
+@media (max-width: 768px) {
+    .breadcrumbs {
+        &-list {
+            margin-top: 40px;
+            gap: 6px;
+            padding: 0 12px;
+        }
+
+        &-item {
+            font-size: 15px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .breadcrumbs {
+        &-list {
+            margin-top: 30px;
+            justify-content: flex-start;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            scrollbar-width: none;
+        }
+
+        &-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        &-item {
+            font-size: 14px;
+        }
     }
 }

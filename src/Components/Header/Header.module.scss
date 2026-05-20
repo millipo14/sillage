@@ -2,17 +2,52 @@
     &-container {
         position: relative;
         display: flex;
-        flex-direction: row;
         align-items: center;
         justify-content: space-between;
         height: 80px;
         color: $second;
+        gap: 20px;
 
+        @include laptop {
+            height: 70px;
+        }
 
+        @include tablet {
+            height: auto;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
     }
 
     &-logo {
         text-align: center;
+        flex-shrink: 0;
+        transition: color 0.2s ease, opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        @include laptop {
+            font-size: 28px;
+        }
+
+        @include mobile {
+            order: 1;
+            font-size: 24px;
+        }
+
+        @include small-mobile {
+            font-size: 20px;
+        }
     }
 
     &-line {
@@ -28,34 +63,119 @@
     }
 
     &-nav {
-
         &_list {
             display: flex;
-            flex-direction: row;
+            align-items: center;
             gap: 20px;
-        }
 
-        &_item {}
+            @include laptop {
+                gap: 16px;
+            }
+
+            @include tablet {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            @include mobile {
+                order: 2;
+                gap: 12px;
+            }
+
+            @include small-mobile {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
 
         &_link {
             font-weight: 600;
             font-size: 18px;
             line-height: 150%;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.2s ease;
+
+            &:color {
+                color: inherit;
+            }
+
+            &:hover {
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 1.5px;
+                    background-color: currentColor;
+                }
+            }
+
+            @include laptop {
+                font-size: 16px;
+            }
+
+            @include mobile {
+                font-size: 15px;
+            }
+
+            @include small-mobile {
+                font-size: 14px;
+            }
         }
     }
 
     &-actions {
-
         &_list {
             display: flex;
-            flex-direction: row;
+            align-items: center;
             gap: 40px;
-        }
 
-        &_item {}
+            @include laptop {
+                gap: 28px;
+            }
+
+            @include tablet {
+                gap: 20px;
+            }
+
+            @include mobile {
+                order: 3;
+            }
+        }
 
         &_link {
             color: $second;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+
+            &:hover {
+                opacity: 0.6;
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+
+                @include mobile {
+                    width: 22px;
+                    height: 22px;
+                }
+
+                @include small-mobile {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
         }
     }
 }
@@ -72,6 +192,18 @@
     background-repeat: no-repeat;
     aspect-ratio: 2062 / 998;
     width: 100%;
+
+    @include tablet {
+        aspect-ratio: 1024 / 700;
+    }
+
+    @include mobile {
+        aspect-ratio: 768 / 700;
+    }
+
+    @include small-mobile {
+        aspect-ratio: 480 / 650;
+    }
 }
 
 .text-white {
@@ -98,26 +230,34 @@
     opacity: 0.4;
 }
 
-
 .cart {
     position: relative;
 }
-.none-count{
+
+.none-count {
     display: none;
 }
 
 .cart-count {
     position: absolute;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 18px;
     height: 18px;
     border-radius: 50%;
     color: #ffffff;
-    top: 0;
-    right: -6px;
+    top: -4px;
+    right: -8px;
     background-color: #000000;
     text-align: center;
     font-weight: 600;
     font-size: 9px;
-    line-height: 18px;
+    line-height: 1;
+
+    @include mobile {
+        width: 16px;
+        height: 16px;
+        font-size: 8px;
+    }
 }

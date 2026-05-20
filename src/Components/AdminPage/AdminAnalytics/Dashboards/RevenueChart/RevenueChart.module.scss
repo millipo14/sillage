@@ -6,6 +6,16 @@
     height: 581px;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06);
     background: #fff;
+
+    @include tablet {
+        width: 100%;
+        height: auto;
+        padding: 32px 24px;
+    }
+
+    @include mobile {
+        padding: 20px 16px;
+    }
 }
 
 .header {
@@ -16,6 +26,10 @@
         font-size: 32px;
         line-height: 120%;
         margin-bottom: 8px;
+
+        @include mobile {
+            font-size: 22px;
+        }
     }
 
     p {
@@ -23,5 +37,15 @@
         font-size: 16px;
         line-height: 113%;
         opacity: 0.6;
+
+        @include mobile {
+            font-size: 14px;
+        }
+    }
+
+    @include mobile {
+        margin-bottom: 20px;
     }
 }
+
+

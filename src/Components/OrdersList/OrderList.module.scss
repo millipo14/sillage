@@ -1,31 +1,98 @@
 .order {
     margin-top: 64px;
     margin-bottom: 100px;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include laptop {
+        margin-top: 48px;
+        margin-bottom: 80px;
+    }
+
+    @include mobile {
+        margin-top: 32px;
+        margin-bottom: 60px;
+    }
 
     &-title {
         margin-bottom: 28px;
         font-weight: 500;
         font-size: 44px;
         line-height: 120%;
+
+        @include laptop {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        @include tablet {
+            font-size: 30px;
+        }
+
+        @include mobile {
+            font-size: 26px;
+            margin-bottom: 16px;
+        }
     }
 
-    &-list {}
+    &-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
 
     &-item {
-        padding: 20px 32px;
+        padding: 24px 32px;
+        box-sizing: border-box;
+
+        @include tablet {
+            padding: 20px 16px;
+        }
+
+        @include mobile {
+            padding: 16px 0;
+        }
 
         &_content {
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
+            gap: 20px;
+            width: 100%;
 
+            @include tablet {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: start;
+                gap: 16px;
+            }
+
+            @include mobile {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                align-items: center;
+            }
+        }
     }
 
     &-id {
         font-weight: 700;
         font-size: 20px;
         line-height: 120%;
+
+        @include laptop {
+            font-size: 18px;
+        }
+
+        @include tablet {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        @include mobile {
+            font-size: 16px;
+        }
     }
 
     &-date {
@@ -33,16 +100,87 @@
         font-size: 20px;
         opacity: 0.7;
         line-height: 120%;
+
+        @include laptop {
+            font-size: 18px;
+        }
+
+        @include tablet {
+            font-size: 16px;
+            grid-column: 1;
+            grid-row: 2;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        @include mobile {
+            font-size: 14px;
+            grid-row: 2;
+        }
     }
 
-    &-status {}
+    &-status {
+        font-size: 18px;
+        font-weight: 600;
+
+        @include laptop {
+            font-size: 16px;
+        }
+
+        @include tablet {
+            font-size: 15px;
+            grid-column: 1;
+            grid-row: 3;
+            margin-top: 6px;
+        }
+
+        @include mobile {
+            font-size: 14px;
+            grid-column: 1 / -1; 
+            grid-row: 4;
+            margin-top: 4px;
+        }
+    }
 
     &-open {
         padding: 9px 13.5px;
         background: #000;
         font-weight: 600;
         font-size: 22px;
-        color: $second
+        color: $second;
+        border: none;
+        cursor: pointer;
+        width: fit-content;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+
+        &:hover {
+            background: #222;
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        @include laptop {
+            font-size: 18px;
+            padding: 8px 16px;
+        }
+
+        @include tablet {
+            grid-column: 2;
+            grid-row: 2 / span 2;
+            font-size: 15px;
+            padding: 10px 20px;
+            justify-self: end;
+        }
+
+        @include mobile {
+            padding: 8px 14px;
+            font-size: 14px;
+            grid-column: 2;
+            grid-row: 2 / span 2;
+            margin-top: 4px;
+        }
     }
 }
 
@@ -53,6 +191,8 @@
     padding: 20px 0;
     animation: slideDown 0.3s ease-out;
     margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @keyframes slideDown {
@@ -68,18 +208,36 @@
 }
 
 .total {
-
     &-amount {
         font-weight: 700;
         font-size: 20px;
-        line-height: 120%
+        line-height: 120%;
+
+        @include laptop {
+            font-size: 18px;
+        }
+
+        @include tablet {
+            grid-column: 2;
+            grid-row: 1; 
+            justify-self: end;
+            font-size: 20px;
+        }
+
+        @include mobile {
+            font-size: 17px;
+        }
     }
 }
 
 .order-line {
-    margin-top: 45px;
+    margin-top: 32px;
     height: 1px;
     background: #d9d9d9;
+
+    @include tablet {
+        margin-top: 24px;
+    }
 }
 
 .empty-orders {
@@ -87,10 +245,15 @@
     text-align: center;
     padding: 40px 20px;
     color: #666;
+    box-sizing: border-box;
 
     p {
         font-size: 18px;
         margin-bottom: 20px;
+
+        @include mobile {
+            font-size: 16px;
+        }
     }
 
     .go-shopping {
@@ -100,11 +263,19 @@
         padding: 12px 24px;
         border-radius: 8px;
         cursor: pointer;
-        transition: background 0.3s;
+        font-size: 16px;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
 
         &:hover {
-            opacity: 50%;
-            transition: all 0.3s ease-in;
+            opacity: 0.8;
+        }
+
+        @include mobile {
+            padding: 10px 20px;
+            font-size: 14px;
+            width: 100%;
+            max-width: 280px;
         }
     }
 }

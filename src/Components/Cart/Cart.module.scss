@@ -1,14 +1,41 @@
 .cart {
-
     &-container {
         padding: 213px 121px 252px 121px;
         display: grid;
         grid-template-areas: 'products line calc';
+        grid-template-columns: 1fr auto minmax(320px, 546px);
+        gap: 0;
+        width: 100%;
+        box-sizing: border-box;
+
+        @media (max-width: 1650px) {
+            padding: 140px 80px;
+        }
+
+        @include laptop {
+            padding: 140px 50px 140px 50px;
+        }
+
+        @include tablet {
+            grid-template-areas:
+                'products'
+                'calc';
+            grid-template-columns: 1fr;
+            padding: 100px 32px 100px 32px;
+            gap: 60px;
+        }
+
+        @include mobile {
+            padding: 80px 16px 80px 16px;
+            gap: 40px;
+        }
     }
 
     &-products {
         grid-area: products;
-        width: 1057px;
+        width: 100%;
+        max-width: 1057px;
+        box-sizing: border-box;
     }
 
     &-title {
@@ -16,11 +43,32 @@
         font-size: 44px;
         line-height: 120%;
 
+        @include laptop {
+            font-size: 36px;
+        }
+
+        @include mobile {
+            font-size: 28px;
+        }
+
         &_item {
             font-weight: 500;
             font-size: 44px;
             line-height: 120%;
             margin-left: 80px;
+
+            @media (max-width: 1650px) {
+                margin-left: 0;
+            }
+
+            @include laptop {
+                font-size: 36px;
+                margin-left: 0;
+            }
+
+            @include mobile {
+                font-size: 28px;
+            }
         }
     }
 
@@ -31,11 +79,31 @@
         background: #656565;
         margin-left: 152px;
         margin-right: 64px;
+
+        @media (max-width: 1650px) {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        @include laptop {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        @include tablet {
+            display: none;
+        }
     }
 
     &-calc {
         grid-area: calc;
-        width: 546px;
+        width: 100%;
+        max-width: 546px;
+        box-sizing: border-box;
+
+        @include tablet {
+            max-width: 100%;
+        }
     }
 
     &-info {
@@ -49,12 +117,20 @@
             font-size: 20px;
             line-height: 120%;
             opacity: 0.7;
+
+            @include mobile {
+                font-size: 16px;
+            }
         }
 
         &_count {
             font-weight: 700;
             font-size: 20px;
             line-height: 120%;
+
+            @include mobile {
+                font-size: 16px;
+            }
         }
     }
 
@@ -68,23 +144,44 @@
             font-size: 24px;
             line-height: 120%;
             opacity: 0.7;
+
+            @include mobile {
+                font-size: 20px;
+            }
         }
 
         &_count {
             font-weight: 700;
             font-size: 28px;
             line-height: 120%;
+
+            @include mobile {
+                font-size: 24px;
+            }
         }
     }
 
     &-order_btn {
         margin-top: 114px;
-        padding: 18.5px 192px;
+        padding: 18.5px 0;
         font-weight: 600;
         font-size: 22px;
         color: $second;
         background: #000;
         cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+
+        @include laptop {
+            margin-top: 50px;
+        }
+
+        @include mobile {
+            font-size: 18px;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
     }
 }
 
@@ -93,6 +190,10 @@
     height: 1px;
     background: #d9d9d9;
     margin: 35px 0px 35px 0px;
+
+    @include tablet {
+        margin: 20px 0;
+    }
 }
 
 .total-line {
@@ -100,21 +201,42 @@
     height: 1px;
     margin: 85px 0 39px 0;
     background: #656565;
+
+    @include laptop {
+        margin: 40px 0 25px 0;
+    }
 }
 
 .line-item {
     margin: 32px 0 32px 80px;
-    width: 977px;
+    width: 100%;
+    max-width: 977px;
     height: 1px;
     background: #d9d9d9;
+
+    @media (max-width: 1650px) {
+        margin-left: 0;
+    }
+
+    @include laptop {
+        margin-left: 0;
+    }
+
+    @include tablet {
+        margin: 20px 0;
+    }
 }
 
 .empty {
-    grid-area: line;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    grid-column: 1 / -1;
+    margin: 100px auto;
     text-align: center;
     font-weight: 500;
     font-size: 44px;
     line-height: 120%;
+    width: 100%;
+
+    @include mobile {
+        font-size: 24px;
+    }
 }

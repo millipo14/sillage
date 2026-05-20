@@ -21,6 +21,7 @@ import Loader from './Components/UI/Loader/Loader'
 import AdminAnalytics from './Components/AdminPage/AdminAnalytics/AdminAnalytics'
 import AdminUsers from './Components/AdminPage/AdminUsers/AdminUsers'
 import AdminSubscriptions from './Components/AdminPage/AdminSubscriptions/AdminSubscriptions'
+import RegisterPage from './Components/RegisterPage/RegisterPage'
 
 
 const ProtectedRoute = ({ children }) => {
@@ -35,7 +36,7 @@ const ProtectedRoute = ({ children }) => {
   return children
 }
 
-//комопнент-обертка
+//компонент-обертка
 const AdminRoute = ({ children }) => {
   const { user } = useSelector(state => state.auth);
   if (user?.role !== 'admin') {
@@ -59,7 +60,7 @@ const router = createBrowserRouter(
     <>
       <Route element={<AuthPage />}>
         <Route path='/login' element={<LoginPage />} />
-        {/* <Route path='/register' element={<RegisterPage />} /> */}
+        <Route path='/register' element={<RegisterPage />} />
       </Route>
 
       <Route path='/' element={

@@ -7,7 +7,6 @@ export const Breadcrumbs = ({ currentName }) => {
     const brandName = location.state?.brandName;
     const brandId = location.state?.brandId;
 
-    // Определяем откуда пришли
     const fromPage = location.state?.from;
 
     return (

@@ -96,7 +96,6 @@ export const FilterModal = ({ open, onClose }) => {
 
                 <div className={s['modal-body']}>
 
-                    {/* ПОЛ */}
                     <section className={s['filter-section']}>
                         <h4 className={s['section-title']}>Для кого</h4>
                         <div className={s['chips-group']}>
@@ -112,7 +111,6 @@ export const FilterModal = ({ open, onClose }) => {
                         </div>
                     </section>
 
-                    {/* ЦЕНА */}
                     <section className={s['filter-section']}>
                         <h4 className={s['section-title']}>Цена (₽)</h4>
                         <div className={s['price-inputs']}>
@@ -132,11 +130,9 @@ export const FilterModal = ({ open, onClose }) => {
                         </div>
                     </section>
 
-                    {/* НОТЫ */}
                     <section className={s['filter-section']}>
                         <h4 className={s['section-title']}>Ноты состава</h4>
 
-                        {/* Блок выбранных нот */}
                         {tempFilters.notes.length > 0 && (
                             <div className={s['selected-badges']}>
                                 {tempFilters.notes.map(note => (
@@ -176,21 +172,20 @@ export const FilterModal = ({ open, onClose }) => {
                         </div>
                     </section>
 
-                    {/* КАТЕГОРИИ */}
                     <section className={s['filter-section']}>
-                        <h4 className={s['section-title']}>Группа ароматов</h4>
+                        <h4 className={s['section-title']}>Категория аромата</h4>
                         <select
                             value={tempFilters.category || ''}
                             onChange={e => setTempFilters({ ...tempFilters, category: e.target.value })}
                             className={s['select-input']}
                         >
-                            <option value="">Все группы</option>
+                            <option value="">Все категории</option>
                             {categories.map(cat => (
                                 <option key={cat} value={cat}>{cat}</option>
                             ))}
                         </select>
                     </section>
-                    {/* КОНЦЕНТРАЦИЯ */}
+
                     <section className={s['filter-section']}>
                         <h4 className={s['section-title']}>Концентрация</h4>
                         <select

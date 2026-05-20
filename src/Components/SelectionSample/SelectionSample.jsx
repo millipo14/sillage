@@ -22,7 +22,7 @@ export default function SelectionSample() {
     return (
         <Container>
             <h2 className={s['sample-title']}>Соберите свой идеальный набор</h2>
-            <p className={s.subtitle}>По выбранному тарифу вы можете самостоятельно выбрать {activePlan.custom_samples} {getSamplewWord(activePlan.custom_sample)}</p>
+            <p className={s.subtitle}>По выбранному тарифу вы можете самостоятельно выбрать {activePlan.custom_samples} {getSamplewWord(activePlan.custom_samples)}</p>
 
             <div className={s['catalog-wrapper']}>
                 <Catalog isSelectionSample={true} />

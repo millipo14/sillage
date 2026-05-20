@@ -10,8 +10,6 @@
     z-index: 1000;
 }
 
-/* CARD */
-
 .modalCard {
     width: 90%;
     max-width: 520px;
@@ -27,8 +25,6 @@
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
     animation: fadeUp 0.25s ease;
 }
-
-/* HEADER */
 
 .modalTitle {
     text-align: center;
@@ -51,8 +47,6 @@
     }
 }
 
-/* CONTENT */
-
 .content {
     margin-top: 20px;
     display: flex;
@@ -62,8 +56,6 @@
     overflow-y: auto;
     padding-right: 6px;
 }
-
-/* SECTION */
 
 .section {
     display: flex;
@@ -75,8 +67,6 @@
     font-size: 16px;
     font-weight: 500;
 }
-
-/* PLAN */
 
 .planCard {
     padding: 14px 16px;
@@ -95,8 +85,6 @@
     opacity: 0.6;
     margin-top: 2px;
 }
-
-/* LIST */
 
 .list {
     display: flex;
@@ -128,8 +116,6 @@
     font-weight: 500;
 }
 
-/* BADGE */
-
 .badge {
     font-size: 12px;
     padding: 5px 10px;
@@ -137,8 +123,6 @@
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-/* AUTO BLOCK */
 
 .autoBlock {
     padding: 14px;
@@ -156,8 +140,6 @@
     opacity: 0.6;
     margin-top: 4px;
 }
-
-/* ACTIONS */
 
 .actions {
     margin-top: 24px;
@@ -191,8 +173,6 @@
         background: rgba(0, 0, 0, 0.05);
     }
 }
-
-/* ANIMATION */
 
 @keyframes fadeUp {
     from {

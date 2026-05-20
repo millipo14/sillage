@@ -18,7 +18,6 @@ export default function OrdersList() {
     const { userOrders, status } = useSelector(state => state.order)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(userOrders)
 
     useEffect(() => {
         dispatch(fetchOrderUser())

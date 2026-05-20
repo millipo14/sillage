@@ -6,18 +6,10 @@ export const fetchPerfume = createAsyncThunk(
     async ({ page = 1, brandId } = {}, { getState }) => {
 
         const filters = getState().filters;
-
-        // let url = `${PERFUMES}?page=${page}&limit=8`
         let url = `${PERFUMES}?page=${page}&limit=8&sort=${filters.sort}`
-        // if (brandId) {
-        //     url += `&brand=${brandId}`
-        // }
+
         if (filters.brand) url += `&brand=${filters.brand}`
-
-        // Внутри fetchPerfume в perfumeSlice.js
         if (filters.gender) url += `&gender=${filters.gender}`;
-
-        // Исправляем блоки цены и категорий
         if (filters.minPrice !== null && filters.minPrice !== "") {
             url += `&minPrice=${filters.minPrice}`;
         }
@@ -31,7 +23,6 @@ export const fetchPerfume = createAsyncThunk(
             url += `&concentration=${encodeURIComponent(filters.concentration)}`
         }
 
-        // Ноты
         if (filters.notes && filters.notes.length > 0) {
             url += `&notes=${encodeURIComponent(filters.notes.join(','))}`;
         }

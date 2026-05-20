@@ -2,6 +2,11 @@
     display: flex;
     width: 100%;
     align-items: center;
+    box-sizing: border-box;
+
+    &-wrapper {
+        width: 100%;
+    }
 
     &-product {
         display: flex;
@@ -9,23 +14,44 @@
         align-items: center;
         width: 100%;
         justify-content: space-between;
+        gap: 24px;
+
+        @include tablet {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 12px 20px;
+        }
+
+        @include mobile {
+            grid-template-columns: 80px 1fr;
+            gap: 12px;
+        }
 
         &_info {
             display: flex;
             gap: 24px;
             align-items: center;
+
+            @include tablet {
+                display: contents;
+            }
         }
 
         &_meta {
             display: flex;
             flex-direction: column;
             gap: 4px;
+
+            @include tablet {
+                grid-column: 2;
+                grid-row: 1;
+            }
         }
 
         &_link {
             text-decoration: none;
             color: inherit;
-            transition: color 0.2s;
+            transition: color 0.2s ease;
 
             &:hover {
                 color: #656565;
@@ -39,18 +65,47 @@
         object-fit: contain;
         background: #f9f9f9;
         border-radius: 8px;
+        flex-shrink: 0;
+
+        @include laptop {
+            width: 90px;
+            height: 90px;
+        }
+
+        @include tablet {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            align-self: start;
+        }
+
+        @include mobile {
+            width: 80px;
+            height: 80px;
+        }
     }
 
     &-title {
         font-weight: 600;
         font-size: 20px;
         line-height: 1.2;
+
+        @include laptop {
+            font-size: 18px;
+        }
+
+        @include mobile {
+            font-size: 16px;
+        }
     }
 
     &-titleBrand {
         font-weight: 500;
         font-size: 16px;
         color: #888;
+
+        @include mobile {
+            font-size: 14px;
+        }
     }
 
     &-volume {
@@ -58,12 +113,31 @@
         font-size: 16px;
         opacity: 0.6;
         margin-top: 4px;
+
+        @include mobile {
+            font-size: 14px;
+            margin-top: 2px;
+        }
     }
 
     &-actions {
         display: flex;
         gap: 40px;
         align-items: center;
+        flex-shrink: 0;
+
+        @include laptop {
+            gap: 24px;
+        }
+
+        @include tablet {
+            grid-column: 2;
+            grid-row: 2;
+            justify-content: space-between;
+            gap: 0;
+            width: 100%;
+            margin-top: 4px;
+        }
     }
 
     &-count {
@@ -72,6 +146,17 @@
         color: #000;
         min-width: 60px;
         text-align: right;
+
+        @include laptop {
+            font-size: 16px;
+        }
+
+        @include tablet {
+            font-size: 14px;
+            text-align: left;
+            color: #666;
+            min-width: auto;
+        }
     }
 
     &-price {
@@ -81,6 +166,15 @@
         min-width: 120px;
         text-align: right;
         white-space: nowrap;
+
+        @include laptop {
+            font-size: 18px;
+            min-width: auto;
+        }
+
+        @include mobile {
+            font-size: 16px;
+        }
     }
 }
 
@@ -89,4 +183,8 @@
     width: 100%;
     height: 1px;
     background: #d9d9d9;
+
+    @include mobile {
+        margin: 16px auto;
+    }
 }

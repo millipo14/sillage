@@ -11,11 +11,11 @@ export const Footer = () => {
                 <div className={s['footer-container']}>
                     <h2 className={cn('logo', s['footer-logo'])}>Sillage Éclatant</h2>
                     <div className={s['footer-contacts']}>
-                        <div className={s['footer-title']}>8 900 000 00 00</div>
+                        <div className={s['footer-title']}>8 950 341 29 01</div>
                         <p className={s['footer-contacts_description']}>круглосуточный телефон</p>
                         <ul className={s['footer-contacts_list']}>
                             <li className={s['footer-contacts_item']}>
-                                <a href='#' className={s['footer-link']}>
+                                <a href='https://vk.com/millipo' className={s['footer-link']}>
                                     <div className={s['footer-contacts_icon']}>
                                         <VK />
                                     </div>
@@ -23,7 +23,7 @@ export const Footer = () => {
                                 </a>
                             </li>
                             <li className={s['footer-contacts_item']}>
-                                <a href='#' className={s['footer-link']}>
+                                <a href='https://t.me/milllipoo' className={s['footer-link']}>
                                     <div className={s['footer-contacts_icon']}>
                                         <TG />
                                     </div>

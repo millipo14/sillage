@@ -15,11 +15,10 @@ export const LoginPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log('Submitting:', email, password);
         try {
             const result = await dispatch(fetchAuth({ email, password })).unwrap();
         } catch (err) {
-            console.log('Error:', err);
+            console.log('Ошибка:', err);
         }
     };
     useEffect(() => {
@@ -64,10 +63,10 @@ export const LoginPage = () => {
                         <button className={s['auth-btn_input']} type="submit" disabled={status === 'loading'}>
                             {status === 'loading' ? 'Загрузка...' : 'Войти'}
                         </button>
-                        <button className={s['auth-btn_google']}>
+                        {/* <button className={s['auth-btn_google']}>
                             <Google />
                             Войти через Google
-                        </button>
+                        </button> */}
                         <p className={s['register-link']}>
                             <span>Нет аккаунта?</span>
                             <NavLink to="/register" className={s['register-link_action']}>Зарегистрироваться</NavLink>
