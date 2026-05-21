@@ -115,7 +115,7 @@ export const Perfume = ({ perfume, sourceFrom, isHome, status, isSelectionSample
                                             dispatch(addToCart(perfumeData))
                                         }
                                     }}>
-                                    <AddToCart />
+                                    <AddToCart className={s['addToCart-img']} />
                                 </button>
 
                             </div>
