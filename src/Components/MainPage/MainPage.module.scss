@@ -60,4 +60,11 @@
     @include mobile {
         font-size: 14px;
     }
+
+    @include small-mobile {
+        white-space: normal;
+        word-wrap: break-word;
+        font-size: 14px;
+        text-align: right;
+    }
 }
