@@ -1,8 +1,8 @@
-export const API_URL = 'http://localhost:5000/api';
-export const IMAGES_URL = 'http://localhost:5000';
+// export const API_URL = 'http://localhost:5000/api';
+// export const IMAGES_URL = 'http://localhost:5000';
 
-// export const API_URL = 'https://sillage-backend-twx5.onrender.com/api';
-// export const IMAGES_URL = 'https://sillage-backend-twx5.onrender.com';
+export const API_URL = 'https://sillage-backend-twx5.onrender.com/api';
+export const IMAGES_URL = 'https://sillage-backend-twx5.onrender.com';
 
 export const AUTH_REGISTER = `${API_URL}/users/register`;
 export const AUTH_LOGIN = `${API_URL}/users/login`;
