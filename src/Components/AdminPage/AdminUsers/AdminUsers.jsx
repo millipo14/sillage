@@ -9,7 +9,6 @@ import UserInfo from './UserInfo/UserInfo'
 export default function AdminUsers() {
     const { users, status } = useSelector(state => state.admin)
     const dispatch = useDispatch()
-
     const [selectedUser, setSelectedUser] = useState(null)
 
     useEffect(() => {

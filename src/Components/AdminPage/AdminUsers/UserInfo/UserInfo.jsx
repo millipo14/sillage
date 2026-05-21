@@ -7,7 +7,8 @@ export default function UserInfo({ user, onClose }) {
   const dispatch = useDispatch()
   const orders = user.orders || []
   const [expandedOrder, setExpandedOrder] = useState(null)
-
+  const categoryPref = user.categoryPreferences || []
+  const notePref = user.preferred_note || []
   if (!user) return null
 
   const handleStatusChange = async (orderId, newStatus) => {
@@ -49,6 +50,39 @@ export default function UserInfo({ user, onClose }) {
           <div className={s.infoItem}><span>Регистрация</span><strong>{new Date(user.created_at).toLocaleDateString()}</strong></div>
           <div className={s.infoItem}><span>Заказов</span><strong>{orders?.length || 0}</strong></div>
           <div className={s.infoItem}><span>Потрачено</span><strong>{orders?.reduce((acc, o) => acc + Number(o.total_amount), 0).toLocaleString()} ₽</strong></div>
+        </div>
+
+        <div className={s.section}>
+          <h3 className={s.sectionTitle}>Предпочтения клиента</h3>
+          <div className={s.preferencesContainer}>
+
+            <div className={s.prefBlock}>
+              <span className={s.prefBlockTitle}>Любимые категории:</span>
+              <div className={s.tags}>
+                {categoryPref.length > 0 ? (
+                  categoryPref.map((cat, index) => (
+                    <span key={index} className={`${s.tag} ${s.tagCategory}`}>{cat.category_name}</span>
+                  ))
+                ) : (
+                  <span className={s.emptyText}>Не указано</span>
+                )}
+              </div>
+            </div>
+
+            <div className={s.prefBlock}>
+              <span className={s.prefBlockTitle}>Предпочитаемые ноты:</span>
+              <div className={s.tags}>
+                {notePref.length > 0 ? (
+                  notePref.map((note, index) => (
+                    <span key={index} className={`${s.tag} ${s.tagNote}`}>{note.note_name}</span>
+                  ))
+                ) : (
+                  <span className={s.emptyText}>Не указано</span>
+                )}
+              </div>
+            </div>
+
+          </div>
         </div>
 
         <div className={s.section}>
