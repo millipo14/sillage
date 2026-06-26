@@ -2,6 +2,26 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AUTH_LOGIN, AUTH_PROFILE, AUTH_REGISTER } from "../const";
 
 
+//для слияния корзины гостя и юзера
+const mergeCarts = (guestCart, userCart) => {
+    const merged = [...userCart]
+
+    guestCart.forEach(guestItem => {
+        const existing = merged.find(item =>
+            item.id === guestItem.id &&
+            item.volume?.volume_ml === guestItem.volume?.volume_ml
+        )
+
+        if (existing) {
+            existing.count += guestItem.count
+        } else {
+            merged.push(guestItem)
+        }
+    })
+
+    return merged
+}
+
 export const fetchAuth = createAsyncThunk(
     'auth/fetchAuth',
     async ({ email, password }) => {
@@ -87,6 +107,17 @@ const authSlice = createSlice({
                 state.isAdmin = action.payload.user?.role === 'admin';
                 localStorage.setItem('token', action.payload.token)
                 localStorage.setItem('user', JSON.stringify(action.payload.user))
+
+                const guestKey = 'cart_guest'
+                const userKey = `cart_${action.payload.user.customer_id}`
+
+                const guestCart = JSON.parse(localStorage.getItem(guestKey) || '[]')
+                const userCart = JSON.parse(localStorage.getItem(userKey) || '[]')
+
+                const merged = mergeCarts(guestCart, userCart)
+
+                localStorage.setItem(userKey, JSON.stringify(merged))
+                localStorage.removeItem(guestKey)
             })
             .addCase(fetchAuth.rejected, (state, action) => {
                 state.status = 'failed'

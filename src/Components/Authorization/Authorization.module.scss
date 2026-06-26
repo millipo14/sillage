@@ -1,0 +1,50 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 120px 10px;
+    min-height: calc(100vh - 500px);
+}
+
+.auth-title {
+    text-align: center;
+}
+
+.auth-btn {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 120%;
+    color: #8056dc;
+    background-color: transparent;
+    border: 3px solid #8056dc;
+    border-radius: 40px;
+    padding: 24px 48px;
+    cursor: pointer;
+    width: fit-content;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+
+    &:hover {
+        color: $second;
+        background-color: #8056dc;
+        opacity: 0.8;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    @include laptop {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    @include mobile {
+        font-size: 15px;
+        padding: 10px 16px;
+        width: 100%;
+        max-width: 280px;
+    }
+}

@@ -4,6 +4,8 @@ import { CartItem } from '../UI/CartItem/CartItem'
 import { useState } from 'react'
 import OrderModal from '../OrderModal/OrderModal'
 import { decrementItem, incrementItem, removeFromCart } from '../../features/cartSlice'
+import Authorization from '../Authorization/Authorization'
+import { useNavigate } from 'react-router-dom'
 
 export const Cart = () => {
     const { cartItems, countItems } = useSelector(state => state.cart)
@@ -13,6 +15,16 @@ export const Cart = () => {
         return sum + item.volume.price * item.count
     }, 0)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const makeOrder = () => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/auth')
+            return
+        }
+        setOpenModal(true)
+    }
 
     return (
         <section className={s['cart-container']}>
@@ -57,7 +69,7 @@ export const Cart = () => {
                             </div>
 
                             <button
-                                onClick={() => setOpenModal(true)}
+                                onClick={() => makeOrder()}
                                 className={s['cart-order_btn']}
                             >К оформлению</button>
                         </div>

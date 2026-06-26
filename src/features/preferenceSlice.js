@@ -4,15 +4,23 @@ import { PREFERENCES, PREFERENCES_QUIZ, PREFERENCES_QUIZ_OPTIONS } from "../cons
 
 export const fetchQuiz = createAsyncThunk(
     'preferences/saveQuizResults',
-    async (quizData) => {
+    async (quizData, { rejectWithValue }) => {
+        const token = localStorage.getItem('token')
+        if (!token) return rejectWithValue('No token')
+
         const response = await fetch(PREFERENCES_QUIZ, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(quizData)
         })
+
+        if (!response.ok) {
+            return rejectWithValue('Unauthorized')
+        }
+
         const data = await response.json()
         return data;
     }
@@ -20,12 +28,20 @@ export const fetchQuiz = createAsyncThunk(
 
 export const fetchQuizOptions = createAsyncThunk(
     'preferences/getQuizOptions',
-    async () => {
+    async (_, { rejectWithValue }) => {
+        const token = localStorage.getItem('token')
+        if (!token) return rejectWithValue('No token')
+
         const response = await fetch(PREFERENCES_QUIZ_OPTIONS, {
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             }
         })
+
+        if (!response.ok) {
+            return rejectWithValue('Unauthorized')
+        }
+
         const data = await response.json()
         return data
     }
@@ -33,12 +49,18 @@ export const fetchQuizOptions = createAsyncThunk(
 
 export const fetchUserPrefs = createAsyncThunk(
     'preferences/fetchUserPrefs',
-    async () => {
+    async (_, { rejectWithValue }) => {
+        const token = localStorage.getItem('token')
+        if (!token) return rejectWithValue('No token')
+
         const response = await fetch(PREFERENCES, {
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             }
         })
+        if (!response.ok) {
+            return rejectWithValue('Unauthorized')
+        }
         return await response.json()
     }
 )
@@ -68,6 +90,15 @@ const preferenceSlice = createSlice(
                 .addCase(fetchUserPrefs.fulfilled, (state, action) => {
                     state.status = 'success';
                     state.userPrefs = action.payload
+                })
+                .addCase(fetchUserPrefs.rejected, (state) => {
+                    state.status = 'error'
+                })
+                .addCase(fetchQuizOptions.rejected, (state) => {
+                    state.status = 'error'
+                })
+                .addCase(fetchQuiz.rejected, (state) => {
+                    state.status = 'error'
                 })
         }
     }

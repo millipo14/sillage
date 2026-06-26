@@ -11,7 +11,6 @@ export const Raiting = ({ currentRating = 0, showCurrentRating = false, classNam
             [s.full]: isFull,
             [s.half]: isHalf
         })
-
         return (
             <li key={index} className={classLi} >
                 <Star />

@@ -7,16 +7,18 @@ import OrdersList from '../OrdersList/OrdersList';
 import UserPreferences from '../UserPreferences/UserPreferences';
 import ProfileSubscriptionInfo from '../ProfileSubscriptionInfo/ProfileSubscriptionInfo';
 import Loader from '../UI/Loader/Loader';
+import Authorization from '../Authorization/Authorization';
 
 
 export default function Profile() {
     const { user, status } = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    if (status === 'loading') return <Loader />
-    
+
     useEffect(() => {
         dispatch(fetchUser())
     }, [])
+    if (status === 'loading') return <Loader />
+    if (!user && status !== 'loading') return <Authorization />
 
     return (
         <Container>

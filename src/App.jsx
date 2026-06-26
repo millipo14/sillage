@@ -1,5 +1,5 @@
 import { Children, useState } from 'react'
-import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Outlet, Route, RouterProvider } from 'react-router-dom'
 import { Root } from './routes/Root'
 import { MainPage } from './Components/MainPage/MainPage'
 import { useSelector } from 'react-redux'
@@ -22,18 +22,19 @@ import AdminAnalytics from './Components/AdminPage/AdminAnalytics/AdminAnalytics
 import AdminUsers from './Components/AdminPage/AdminUsers/AdminUsers'
 import AdminSubscriptions from './Components/AdminPage/AdminSubscriptions/AdminSubscriptions'
 import RegisterPage from './Components/RegisterPage/RegisterPage'
+import Authorization from './Components/Authorization/Authorization'
 
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const { token, user } = useSelector(state => state.auth)
 
   if (token && !user) {
     return <Loader />
   }
   if (!token) {
-    return <Navigate to='/login' replace />
+    return <Navigate to="/auth" replace />
   }
-  return children
+  return <Root />
 }
 
 //компонент-обертка
@@ -63,21 +64,21 @@ const router = createBrowserRouter(
         <Route path='/register' element={<RegisterPage />} />
       </Route>
 
-      <Route path='/' element={
-        <ProtectedRoute>
-          <Root />
-        </ProtectedRoute>
-      }>
+      <Route path='/' element={<Root />}>
         <Route index element={<HomeRedirect />} />
+        <Route path='auth' element={<Authorization />} />
         <Route path='/subscription' element={<Subscription />} />
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/perfume/:id' element={<PerfumePage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/brands' element={<BrandPage />} />
         <Route path='/brands/:id' element={<Brand />} />
-        <Route path='/quiz' element={<QuizPage />} />
-        <Route path='/profile' element={<Profile />} />
         <Route path='/reviews' element={<Reviews />} />
+      </Route>
+
+      <Route element={<ProtectedRoute />}>
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/quiz' element={<QuizPage />} />
         <Route path='/selectsample' element={<SelectionSample />} />
         <Route path='/recommendations' element={<Recommendations />} />
       </Route>
