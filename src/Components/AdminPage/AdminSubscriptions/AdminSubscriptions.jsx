@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdminSubscriptions } from '../../../features/adminSlice';
 import s from './AdminSubscriptions.module.scss';
 import { Container } from '../../Layout/Container/Container';
+import Loader from '../../UI/Loader/Loader';
 
 const statusMap = {
     active: { text: 'Активна', color: '#27ae60' },
@@ -12,7 +13,7 @@ const statusMap = {
 
 export default function AdminSubscriptions() {
     const dispatch = useDispatch()
-    const { subsriptionsUsers } = useSelector(state => state.admin)
+    const { subsriptionsUsers, status } = useSelector(state => state.admin)
     const [openedId, setOpenedId] = useState(null)
 
     useEffect(() => {
@@ -36,7 +37,9 @@ export default function AdminSubscriptions() {
             day: 'numeric', month: 'long', year: 'numeric'
         }).replace(/\s*г\.?$/, '')
     };
-
+    if (status === 'loading') {
+        return <Loader />
+    }
     return (
         <Container className={s.subscriptions}>
             <h2 className={s.title}>Активные подписки ({filteredSubs.length})</h2>

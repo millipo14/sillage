@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchSubscription, setActivePlan } from '../../features/subscriptionSlice'
 import { Link, useNavigate } from 'react-router-dom'
+import Loader from '../UI/Loader/Loader'
 
 export const Subscription = () => {
     const dispatch = useDispatch()
-    const { subscriptionPlans } = useSelector(state => state.subscriptionPlans)
+    const { subscriptionPlans, status } = useSelector(state => state.subscriptionPlans)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -18,6 +19,9 @@ export const Subscription = () => {
     const handlePlan = (plan) => {
         dispatch(setActivePlan(plan))
         navigate('/selectsample')
+    }
+    if(status === 'loading'){
+        return <Loader />
     }
 
     return (

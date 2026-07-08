@@ -34,7 +34,7 @@ export const Catalog = ({ brandId, isHome = false, isRecommendations = false, is
     return (
         <Container>
             {!isHome && !isRecommendations && <TopCatalog total={total} />}
-            <div style={{ position: 'relative', minHeight: '700px' }}>
+            <div style={{ position: 'relative', minHeight: '800px' }}>
                 {currentStatus === 'loading' && (
                     <div style={{
                         position: 'absolute',

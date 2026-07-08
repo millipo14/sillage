@@ -40,6 +40,9 @@ const adminSlice = createSlice({
                 state.status = 'fullfiled'
                 state.users = action.payload
             })
+            .addCase(fetchAdminSubscriptions.pending, (state) => {
+                state.status = 'loading';
+            })
             .addCase(fetchAdminSubscriptions.fulfilled, (state, action) => {
                 state.status = 'fullfiled'
                 state.subsriptionsUsers = action.payload

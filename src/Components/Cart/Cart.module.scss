@@ -1,6 +1,7 @@
 .cart {
     &-container {
         padding: 213px 121px 252px 121px;
+        margin-bottom: 70px;
         display: grid;
         grid-template-areas: 'products line calc';
         grid-template-columns: 1fr auto minmax(320px, 546px);

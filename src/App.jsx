@@ -34,16 +34,16 @@ const ProtectedRoute = () => {
   if (!token) {
     return <Navigate to="/auth" replace />
   }
-  return <Root />
+  return <Outlet />
 }
 
 //компонент-обертка
-const AdminRoute = ({ children }) => {
+const AdminRoute = () => {
   const { user } = useSelector(state => state.auth);
   if (user?.role !== 'admin') {
     return <Navigate to='/' replace />;
   }
-  return children;
+  return <Outlet />
 };
 
 const HomeRedirect = () => {
@@ -77,10 +77,14 @@ const router = createBrowserRouter(
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/quiz' element={<QuizPage />} />
-        <Route path='/selectsample' element={<SelectionSample />} />
-        <Route path='/recommendations' element={<Recommendations />} />
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<AdminPage />}>
+            <Route index element={<AdminAnalytics />} />
+            <Route path="analysis" element={<AdminAnalytics />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path='subscriptions_users' element={<AdminSubscriptions />} />
+          </Route>
+        </Route>
       </Route>
 
       <Route path='/admin'

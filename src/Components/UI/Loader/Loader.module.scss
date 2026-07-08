@@ -2,9 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 200px);
+    height: 800px;
     width: 100%;
-    padding: 40px 0;
     box-sizing: border-box;
 
     @include tablet {
