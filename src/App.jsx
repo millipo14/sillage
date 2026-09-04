@@ -77,6 +77,7 @@ const router = createBrowserRouter(
       </Route>
 
       <Route element={<ProtectedRoute />}>
+        <Route path="/profile" element={<Profile />} />
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminPage />}>
             <Route index element={<AdminAnalytics />} />

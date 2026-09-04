@@ -12,7 +12,6 @@ export const fetchUsersForAdmins = createAsyncThunk(
 export const fetchAdminSubscriptions = createAsyncThunk(
     'admin/fetchAdminSubscriptions',
     async () => {
-
         const response = await fetch(ADMIN_SUBSCRIPTIONS, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
