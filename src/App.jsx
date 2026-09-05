@@ -75,7 +75,9 @@ const router = createBrowserRouter(
         <Route path='/brands/:id' element={<Brand />} />
         <Route path='/reviews' element={<Reviews />} />
 
-        <Route path="/profile" element={<Profile />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="profile" element={<Profile />} />
+        </Route>
       </Route>
 
       <Route element={<ProtectedRoute />}>
