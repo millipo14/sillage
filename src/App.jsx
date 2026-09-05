@@ -74,10 +74,12 @@ const router = createBrowserRouter(
         <Route path='/brands' element={<BrandPage />} />
         <Route path='/brands/:id' element={<Brand />} />
         <Route path='/reviews' element={<Reviews />} />
+
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/profile" element={<Profile />} />
+
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminPage />}>
             <Route index element={<AdminAnalytics />} />
