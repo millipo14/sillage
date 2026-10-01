@@ -77,6 +77,7 @@ const router = createBrowserRouter(
 
         <Route element={<ProtectedRoute />}>
           <Route path="profile" element={<Profile />} />
+          <Route path="recommendations" element={<Recommendations />} />
         </Route>
       </Route>
 
