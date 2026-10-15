@@ -6,6 +6,12 @@
 
 Проект доступен по ссылке:  https://sillage-two.vercel.app/
 
+Вход тестового пользователя:
+логин: alis@test.ru  пароль: password123
+
+Вход администратора:
+логин: millipo@exm.com  пароль: millipo
+
 ## Технологии
 
 - React
